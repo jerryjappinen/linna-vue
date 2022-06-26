@@ -1,13 +1,3 @@
-<script>
-import AppStoreBadge from 'linna-vue/components/AppStoreBadge'
-
-export default {
-  components: {
-    AppStoreBadge
-  }
-}
-</script>
-
 <template>
   <div>
 

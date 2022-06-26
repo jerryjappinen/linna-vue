@@ -1,11 +1,5 @@
 <script>
-import ExternalLink from 'linna-vue/components/ExternalLink'
-
 export default {
-  components: {
-    ExternalLink
-  },
-
   data () {
     return {
       url: 'https://jerryjappinen.com'
