@@ -1,0 +1,43 @@
+{
+  "name": "linna-vue",
+  "version": "7.0.0",
+  "description": "Component library for Vue.",
+  "main": "index.js",
+  "private": false,
+  "files": [
+    "components"
+  ],
+  "scripts": {
+    "dev": "cd docs && npm run dev",
+    "patch": "npm version patch -m \"New patch version\" && npm publish && git push -u origin HEAD --tags",
+    "minor": "npm version minor -m \"New minor version\" && npm publish && git push -u origin HEAD --tags",
+    "major": "npm version major -m \"New major version\" && npm publish && git push -u origin HEAD --tags",
+    "lint": "npm run lint:js",
+    "lint:js": "eslint --ext .js components config directives log mixins services social spec vendor",
+    "lint:js:fix": "npm run lint:js -- --fix",
+    "test": "npm run test:silent",
+    "test:default": "jest --config jest.config.js",
+    "test:silent": "npm run test:default -- --silent",
+    "test:watch": "npm run test:default -- --watch --silent",
+    "test:watch:verbose": "npm run test:default -- --watch"
+  },
+  "author": {
+    "name": "Jerry Jäppinen",
+    "url": "https://github.com/jerryjappinen"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jerryjappinen/linna-vue.git"
+  },
+  "license": "",
+  "dependencies": {
+    "linna-util": "^5.0.17",
+    "moabit": "^2.6.0",
+    "lodash": "^4.17.21",
+    "markdown-it": "^13.0.1",
+    "md5": "^2.3.0",
+    "vue-slider-component": "^3.2.16"
+  },
+  "devDependencies": {
+  }
+}
