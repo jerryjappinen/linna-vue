@@ -11,6 +11,19 @@ const configs = [
   meta,
   modules,
   {
+
+    // Link to local source files when running docs
+    alias: {
+      'linna-vue': '../../'
+    },
+
+    // Make uncompiled components work
+    build: {
+      transpile: [
+        'linna-vue'
+      ]
+    },
+
     // These are only to make early development easier
     // https://v3.nuxtjs.org/getting-started/introduction
     // ssr: false,

@@ -1,5 +1,5 @@
 <script>
-import AppStoreBadge from '../../components/AppStoreBadge'
+import AppStoreBadge from 'linna-vue/components/AppStoreBadge'
 
 export default {
   components: {
@@ -14,11 +14,11 @@ export default {
     <h1>AppStoreBadge</h1>
 
     <p>
-        <AppStoreBadge />
+      <AppStoreBadge />
     </p>
 
     <p>
-        <AppStoreBadge :light="true" />
+      <AppStoreBadge :light="true" />
     </p>
 
   </div>

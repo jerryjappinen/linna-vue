@@ -1,9 +1,10 @@
 {
   "private": true,
   "scripts": {
-    "build": "nuxt build",
     "dev": "nuxt dev",
-    "generate": "nuxt generate",
+    "build": "npm run build:static",
+    "build:server": "nuxt build",
+    "build:static": "nuxt generate",
     "preview": "nuxt preview"
   },
   "devDependencies": {
