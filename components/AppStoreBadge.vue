@@ -14,7 +14,7 @@ export default {
   },
 
   render () {
-    return `${this.light ? svgLight : svgDark}`
+    return h(`${this.light ? svgLight : svgDark}`)
   }
 
 }
