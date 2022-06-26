@@ -12,6 +12,7 @@
     "sass-loader": "^10.2.1"
   },
   "dependencies": {
-    "linna-util": "^5.0.17"
+    "linna-util": "^5.0.17",
+    "moabit": "^2.6.0"
   }
 }
