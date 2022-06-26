@@ -5,7 +5,8 @@
     "build": "npm run build:static",
     "build:server": "nuxt build",
     "build:static": "nuxt generate",
-    "preview": "nuxt preview"
+    "preview": "nuxt preview",
+    "link:local": "ln -s ../../ ./node_modules/linna-vue"
   },
   "devDependencies": {
     "nuxt": "3.0.0-rc.4",

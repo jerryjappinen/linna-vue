@@ -1,3 +1,5 @@
+import { resolve } from 'path';
+
 import isArray from "lodash/isArray";
 import mergeWith from "lodash/mergeWith";
 
@@ -13,9 +15,9 @@ const configs = [
   {
 
     // Link to local source files when running docs
-    alias: {
-      'linna-vue': '../../'
-    },
+    // alias: {
+    //   'linna-vue': resolve(__dirname, '../../')
+    // },
 
     // Make uncompiled components work
     build: {
@@ -26,7 +28,7 @@ const configs = [
 
     // These are only to make early development easier
     // https://v3.nuxtjs.org/getting-started/introduction
-    // ssr: false,
+    ssr: false,
     // typescript: {
     //   shim: false
     // }

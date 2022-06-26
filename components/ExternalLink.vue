@@ -48,6 +48,5 @@ export default {
     class="c-external-link"
     :href="href"
     v-bind="bind"
-    v-on="$listeners"
   ><slot /></a>
 </template>
