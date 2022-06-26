@@ -32,12 +32,13 @@
   "license": "",
   "dependencies": {
     "linna-util": "^5.0.17",
-    "moabit": "^2.6.0",
     "lodash": "^4.17.21",
     "markdown-it": "^13.0.1",
     "md5": "^2.3.0",
+    "moabit": "^2.6.0",
     "vue-slider-component": "^3.2.16"
   },
   "devDependencies": {
+    "@nuxt/kit": "^3.0.0-rc.4"
   }
 }
