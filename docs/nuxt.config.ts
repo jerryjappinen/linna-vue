@@ -1,6 +1,6 @@
-import { defineNuxtConfig } from "nuxt";
+import { defineNuxtConfig } from 'nuxt'
 
-import nuxtConfig from "./nuxtConfig";
+import nuxtConfig from './nuxt.config'
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
-export default defineNuxtConfig(nuxtConfig);
+export default defineNuxtConfig(nuxtConfig)

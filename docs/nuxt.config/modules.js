@@ -1,6 +1,6 @@
-import svgLoader from "vite-svg-loader";
+import svgLoader from 'vite-svg-loader'
 
-import svgoConfig from "./svgoConfig";
+import svgoConfig from './svgoConfig'
 
 // https://v3.nuxtjs.org/docs/directory-structure/nuxt.config
 export default {
@@ -8,14 +8,14 @@ export default {
     plugins: [
       svgLoader({
         svgoConfig,
-      }),
-    ],
+      })
+    ]
   },
 
   buildModules: [
     // State management
-    // "@pinia/nuxt",
+    // '@pinia/nuxt',
   ],
 
-  modules: [],
-};
+  modules: []
+}

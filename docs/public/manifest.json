@@ -1,0 +1,20 @@
+{
+  "name": "Linna",
+  "short_name": "Linna",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "display": "fullscreen",
+  "icons": [
+    {
+      "src": "google-touch-icon.png",
+      "sizes": "512x512"
+    }
+  ],
+  "splash_screens": [
+    {
+      "src": "splashImage.jpg",
+      "sizes": "496x292",
+      "density": 2
+    }
+  ]
+}
