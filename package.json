@@ -1,6 +1,6 @@
 {
   "name": "linna-vue",
-  "version": "7.0.0",
+  "version": "0.1.0",
   "description": "Component library for Vue.",
   "main": "index.js",
   "private": false,
@@ -31,16 +31,17 @@
   },
   "license": "",
   "dependencies": {
+    "linna-sass": "^0.1.1",
     "linna-util": "^5.0.17",
     "lodash": "^4.17.21",
     "markdown-it": "^13.0.1",
     "md5": "^2.3.0",
     "moabit": "^2.6.0",
-    "vue-slider-component": "^3.2.16"
+    "vue-slider-component": "^3.2.17"
   },
   "devDependencies": {
-    "nuxt": "3.0.0-rc.4",
+    "@nuxt/kit": "^3.0.0-rc.4",
     "sass": "^1.53.0",
-    "sass-loader": "^10.2.1"
+    "sass-loader": "^10.3.1"
   }
 }
