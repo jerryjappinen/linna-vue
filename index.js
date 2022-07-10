@@ -1,20 +1,14 @@
-import { defineNuxtModule } from '@nuxt/kit'
-import { fileURLToPath } from 'node:url'
+import components from './components'
 
-// This file allows using linna-vue as a Nuxt module
-// Add this to nuxt.config:
-//   modules: [
-//     'linna-vue'
-//   ]
-export default defineNuxtModule({
-  hooks: {
-    'components:dirs' (dirs) {
-      // Add ./components dir to the list
-      dirs.push({
-        path: fileURLToPath(new URL('./components', import.meta.url)),
-        // prefix: 'linna'
-        prefix: ''
-      })
+const plugin = {
+  install (Vue) {
+    for (const prop in components) {
+      if (components.hasOwnProperty(prop)) {
+        const component = components[prop]
+        Vue.component(component.name, component)
+      }
     }
   }
-})
+}
+
+export default plugin

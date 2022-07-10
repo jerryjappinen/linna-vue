@@ -9,6 +9,7 @@
     "components"
   ],
   "scripts": {
+    "build": "rollup -c",
     "patch": "npm version patch -m \"New patch version\" && npm publish && git push -u origin HEAD --tags",
     "minor": "npm version minor -m \"New minor version\" && npm publish && git push -u origin HEAD --tags",
     "major": "npm version major -m \"New major version\" && npm publish && git push -u origin HEAD --tags",
@@ -30,17 +31,19 @@
     "url": "https://github.com/jerryjappinen/linna-vue.git"
   },
   "license": "",
-  "dependencies": {
+  "peerDependencies": {
     "linna-sass": "^0.1.1",
     "linna-util": "^5.0.17",
     "lodash": "^4.17.21",
     "markdown-it": "^13.0.1",
-    "md5": "^2.3.0",
-    "moabit": "^2.6.0",
-    "vue-slider-component": "^3.2.17"
+    "vue-slider-component": "^3.2.17",
+    "vue": "^3.2.37"
   },
   "devDependencies": {
-    "@nuxt/kit": "^3.0.0-rc.4",
+    "nuxt": "^3.0.0-rc.4",
+    "rollup": "^2.76.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-vue": "^6.0.0",
     "sass": "^1.53.0",
     "sass-loader": "^10.3.1"
   }
