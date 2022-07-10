@@ -2,6 +2,10 @@ import { defineNuxtModule } from '@nuxt/kit'
 import { fileURLToPath } from 'node:url'
 
 // This file allows using linna-vue as a Nuxt module
+// Add this to nuxt.config:
+//   modules: [
+//     'linna-vue'
+//   ]
 export default defineNuxtModule({
   hooks: {
     'components:dirs' (dirs) {
@@ -14,4 +18,3 @@ export default defineNuxtModule({
     }
   }
 })
-

@@ -9,7 +9,6 @@
     "components"
   ],
   "scripts": {
-    "dev": "cd docs && npm run dev",
     "patch": "npm version patch -m \"New patch version\" && npm publish && git push -u origin HEAD --tags",
     "minor": "npm version minor -m \"New minor version\" && npm publish && git push -u origin HEAD --tags",
     "major": "npm version major -m \"New major version\" && npm publish && git push -u origin HEAD --tags",
