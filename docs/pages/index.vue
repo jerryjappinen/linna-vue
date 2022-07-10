@@ -13,11 +13,15 @@ export default {
 
 <template>
   <div>
+    <h1>linna docs</h1>
+
+    <h2>Components</h2>
+
     <li
       v-for="componentPage in componentPages"
       :key="componentPage"
     >
-      <NuxtLink :to="'/Doc' + componentPage">
+      <NuxtLink :to="'/c-' + componentPage">
         {{ componentPage }}
       </NuxtLink>
     </li>
