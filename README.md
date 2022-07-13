@@ -1,21 +1,38 @@
 # linna-vue
 
+Install dependencies:
+
+```sh
+npm i linna-sass linna-util linna-vue
+```
+
+Some components might depend on modules from other packages:
+
+```js
+npm i lodash date-fns markdown-it
+```
+
+Use components in your `.vue` files:
+
+```js
+import ClickButton from 'linna-vue/components/ClickButton.vue'
+
+export default {
+  components: {
+    ClickButton
+  }
+}
+```
+
+`components/` is NOT built during install. You must transpile them yourself in your project.
+
+
 ### Nuxt module
 
 Install as a Nuxt module to auto-import components.
 
 ```js
-defineNuxtConfig({
+export default {
   modules: ['linna-vue']
-})
-```
-
-# Development
-
-To run docs with local source files, use [`npm link`](https://docs.npmjs.com/cli/v8/commands/npm-link)
-
-```js
-First, `npm link` in a package folder with no. It will also link any bins in the package to {prefix}/bin/{name}. Note that npm link uses the global prefix (see npm prefix -g for its value).
-
-Next, in some other location, npm link package-name will create a symbolic link from globally-installed package-name to node_modules/ of the current folder.
+}
 ```
