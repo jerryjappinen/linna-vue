@@ -7,6 +7,9 @@
   "main": "dist/library.js",
   "module": "dist/library.mjs",
   "files": [
+    "components.js",
+    "index.js",
+    "nuxt.js",
     "components/*",
     "dist/*"
   ],
