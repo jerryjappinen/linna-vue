@@ -1,0 +1,48 @@
+<script>
+export default {
+
+  props: {
+
+    // Not required in order to support lazy loading images
+    src: {
+      type: String,
+      required: false
+    },
+
+    title: {
+      type: String,
+      required: false
+    },
+
+    naturalWidth: {
+      type: [Number, String],
+      default: null
+    },
+
+    naturalHeight: {
+      type: [Number, String],
+      default: null
+    }
+
+  },
+
+  computed: {
+
+    normalizedTitle () {
+      return this.title ? ('' + this.title).trim() : this.title
+    }
+
+  }
+}
+</script>
+
+<template>
+  <img
+    class="c-bitmap"
+    :alt="normalizedTitle"
+    :width="naturalWidth"
+    :height="naturalHeight"
+    :src="src"
+    :title="normalizedTitle"
+  >
+</template>

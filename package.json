@@ -1,12 +1,15 @@
 {
   "name": "linna-vue",
-  "version": "0.1.1",
+  "version": "0.1.3",
   "description": "Component library for Vue.",
   "private": false,
   "type": "module",
   "main": "dist/library.js",
   "module": "dist/library.mjs",
   "files": [
+    "components.js",
+    "index.js",
+    "nuxt.js",
     "components/*",
     "dist/*"
   ],
@@ -33,7 +36,7 @@
     "url": "https://github.com/jerryjappinen/linna-vue.git"
   },
   "peerDependencies": {
-    "linna-sass": "^0.1.1",
+    "linna-sass": "^0.2.0",
     "linna-util": "^5.0.17",
     "lodash": "^4.17.21",
     "markdown-it": "^13.0.1",
