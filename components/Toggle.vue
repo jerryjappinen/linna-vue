@@ -1,0 +1,71 @@
+<script>
+// Wrapper component to be used as a hit area. Using this makes it easier to style and control a hit area separately from the control visualisation inside it, for example in table rows
+
+// This input is used by passing the value attribute with `.sync` modifier
+// Internally this translates to two-way use of `value` prop
+// State of the input is kept track of internally, and the result is $emitted to parent scope
+// http://vuejs.org/guide/components.html#Form-Input-Components-using-Custom-Events
+
+import Set from './Set'
+
+export default {
+  emits: ['update:modelValue'],
+
+  components: {
+    Set
+  },
+
+  props: {
+
+    modelValue: {
+      type: Boolean,
+      required: true
+    },
+
+    // Passed through
+    disabled: {},
+    block: {},
+    button: {}
+  },
+
+  components: {
+
+    value: {
+      get () {
+        return this.modelValue
+      },
+      set (value) {
+        this.$emit('update:modelValue', value)
+      }
+    }
+
+  }
+
+}
+</script>
+
+<template>
+  <Set
+    class="c-toggle control"
+    :class="{
+      'c-toggle-on': value,
+      'c-toggle-off': !value,
+      'c-toggle-enabled': !disabled,
+      'c-toggle-disabled': disabled,
+      'c-toggle-inline': !block
+    }"
+    :to="!value"
+    :block="block"
+    :button="button"
+    v-model="value"
+    @click="$emit('click')"
+  ><slot /></Set>
+</template>
+
+<style lang="scss">
+
+.c-toggle-inline {
+  display: inline-block;
+}
+
+</style>
