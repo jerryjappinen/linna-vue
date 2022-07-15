@@ -6,7 +6,7 @@
   "tasks": {
     "dev": {
       "name": "dev",
-      "command": "cd docs && npm run dev"
+      "command": "npm run dev"
     }
   }
 }

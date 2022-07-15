@@ -36,3 +36,9 @@ export default {
   modules: ['linna-vue']
 }
 ```
+
+### Todo
+
+- [] Add tests
+- [] Make test watcher the dev command
+- [] Set test command as default in codesandbox
