@@ -5,6 +5,7 @@ import isPlainObject from 'lodash/isPlainObject'
 import Icon from './Icon'
 
 export default {
+  emits: ['update:modelValue'],
 
   components: {
     Icon

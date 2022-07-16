@@ -28,7 +28,7 @@ export default {
     button: {}
   },
 
-  components: {
+  computed: {
 
     value: {
       get () {

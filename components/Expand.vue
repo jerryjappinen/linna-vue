@@ -1,11 +1,11 @@
 <script>
+import { h } from 'vue'
+
 // https://markus.oberlehner.net/blog/transition-to-height-auto-with-vue/
 // https://github.com/maoberlehner/transition-to-height-auto-with-vue/blob/master/src/App.vue
 export default {
-  functional: true,
-
-  render (createElement, context) {
-    return createElement('transition', {
+  render (context) {
+    return h('transition', {
 
       props: {
         name: 'c-transition-expand'
