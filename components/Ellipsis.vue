@@ -39,16 +39,16 @@ export default {
 
   .c-ellipsis-bullet {
     $c-ellipsis-duration: 5s;
-    $c-ellipsis-delay: #{math.div(math.div($c-ellipsis-duration, 5), 3)};
+    $c-ellipsis-delay: 0.333s;
 
     @include animation(c-ellipsis-pulse, $c-ellipsis-duration);
 
     &:nth-child(1) {
-      animation-delay: 2 * $c-ellipsis-delay;
+      animation-delay: #{2 * $c-ellipsis-delay};
     }
 
     &:nth-child(2) {
-      animation-delay: 1 * $c-ellipsis-delay;
+      animation-delay: #{1 * $c-ellipsis-delay};
     }
 
   }
