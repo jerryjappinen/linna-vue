@@ -42,3 +42,5 @@ export default {
 - [] Add tests
 - [] Make test watcher the dev command
 - [] Set test command as default in codesandbox
+- [] Add `persist` composable
+- [] Add `nuxtPage` composable

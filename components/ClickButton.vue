@@ -51,11 +51,6 @@ export default {
     disabled: {
       type: Boolean,
       default: null
-    },
-
-    color: {
-      type: String,
-      default: null
     }
 
   },
@@ -119,8 +114,6 @@ export default {
     v-bind="bind"
     :is="is"
     :class="{
-      ['c-click-button-' + color]: color,
-      ['c-click-button-' + color + '-disabled']: color && disabled,
       ['c-click-button-inline']: !block,
       ['c-click-button-block']: block,
       ['c-click-button-pad']: color === 'primary' || pad,
@@ -133,64 +126,40 @@ export default {
   </component>
 </template>
 
-<style>
+<style lang="scss">
 
 .c-click-button {
-  align-items: center;
+  @include transition-properties-common;
+  @include transition-fast;
 
-  transition-property: background-color, color, transform;
-  transition-duration: var(--transition-fast);
+  align-items: center;
 }
 
 .c-click-button-inline {
-  display: inline-flex;
+  @include inline-flex;
 }
 
 .c-click-button-block {
-  display: flex;
+  @include block;
   text-align: center;
   justify-content: center;
 }
 
 .c-click-button-enabled {
-  cursor: pointer;
-}
+  @include pointer;
 
-.c-click-button-enabled:active {
-  transform: translateY(2px);
-}
-
-.c-click-button-secondary,
-.c-click-button-primary {
-  border-radius: var(--radius);
-  font-weight: var(--semibold);
+  &:active {
+    transform: translateY(2px);
+  }
 }
 
 .c-click-button-pad {
-  padding: var(--pad-small) var(--pad-large);
+  @include pad;
 }
 
-.c-click-button-primary {
-  color: var(--white);
-  background-color: var(--blue);
-}
-
-.c-click-button-secondary,
-.c-click-button-link {
-  color: var(--blue);
-}
-
-/* .c-click-button-link {
-  font-weight: var(--semibold);
-} */
-
-.c-click-button-primary-disabled {
-  color: var(--white-translucent);
-}
-
-.c-click-button-primary-secondary-disabled,
-.c-click-button-link-disabled {
-  color: var(--blue-translucent);
+.c-click-button-disabled {
+  @include inherit-cursor;
+  @include no-pointer-events;
 }
 
 </style>
