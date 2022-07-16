@@ -55,25 +55,22 @@ export default {
 </script>
 
 <template>
-
-  <!-- https://vuejs.org/images/transition.png -->
   <transition
     :name="'transition-' + name"
     :mode="modeForVue"
     :appear="appear"
     :duration="duration"
 
-    :enter-class="getTransitionClassname('enter')"
+    :enter-from-class="getTransitionClassname('enter-from')"
     :enter-active-class="getTransitionClassname('enter-active')"
     :enter-to-class="getTransitionClassname('enter-to')"
-    :leave-class="getTransitionClassname('leave')"
+    :leave-from-class="getTransitionClassname('leave-from')"
     :leave-active-class="getTransitionClassname('leave-active')"
     :leave-to-class="getTransitionClassname('leave-to')"
-    :appear-class="getTransitionClassname('appear')"
+    :appear-from-class="getTransitionClassname('appear-from')"
     :appear-to-class="getTransitionClassname('appear-to')"
     :appear-active-class="getTransitionClassname('appear-active')"
   >
     <slot />
   </transition>
-
 </template>
