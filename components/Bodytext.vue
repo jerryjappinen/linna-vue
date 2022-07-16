@@ -1,5 +1,5 @@
 <script>
-import eventHasMetaKey from 'linna-util/eventHasMetaKey'
+import eventHasAnyMetaKey from 'linna-util/eventHasAnyMetaKey'
 import linkIsInternal from 'linna-util/linkIsInternal'
 
 export default {
@@ -65,7 +65,7 @@ export default {
 
         // Temporarily make link external if user didn't press meta key
         if (
-          !eventHasMetaKey(event) &&
+          !eventHasAnyMetaKey(event) &&
           !linkIsInternal(event.target)
         ) {
           this.modifyExternalLink(event.target)
