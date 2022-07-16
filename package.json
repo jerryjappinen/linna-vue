@@ -36,7 +36,7 @@
     "url": "https://github.com/jerryjappinen/linna-vue.git"
   },
   "peerDependencies": {
-    "linna-sass": "^0.2.2",
+    "linna-sass": "^0.2.3",
     "linna-util": "^5.0.17",
     "lodash": "^4.17.21",
     "markdown-it": "^13.0.1",
