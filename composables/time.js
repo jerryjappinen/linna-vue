@@ -5,6 +5,10 @@ export default () => {
   const intervalDuration = ref(100) // ms
 
   // You can listen to these to only get an update when you need it
+  const currentMillisecond = computed(() => {
+    return current.value.getMilliseconds()
+  })
+
   const currentSecond = computed(() => {
     return current.value.getSeconds()
   })
@@ -69,6 +73,7 @@ export default () => {
 
     current,
 
+    currentMillisecond,
     currentSecond,
     currentMinute,
     currentHour,
