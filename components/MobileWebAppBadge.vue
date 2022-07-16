@@ -1,15 +1,11 @@
 <script>
 export default {
-
   props: {
-
     light: {
       type: Boolean,
       default: false
     }
-
   }
-
 }
 </script>
 
