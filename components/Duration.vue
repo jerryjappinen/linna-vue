@@ -2,6 +2,7 @@
 import differenceInCalendarDays from 'date-fns/differenceInCalendarDays'
 
 import formatDate from 'linna-util/formatDate'
+import normalizeDate from 'linna-util/normalizeDate'
 
 // NOTE: this element might print an empty <span />
 // This is intentional:
@@ -34,23 +35,27 @@ export default {
 
   computed: {
 
+    normalizedDate1 () {
+      return normalizeDate(this.date)
+    },
+
     diff () {
       return Math.abs(
         differenceInCalendarDays(
-          this.date,
+          this.normalizedDate1,
           this.normalizedDate2
         )
       )
     },
 
     normalizedDate2 () {
-      return this.endDate ? this.endDate : new Date()
+      return this.endDate ? normalizeDate(this.endDate) : new Date()
     },
 
     detailsString () {
 
       if (this.diff) {
-        const date1 = formatDate(this.date)
+        const date1 = formatDate(this.normalizedDate1)
         const date2 = formatDate(this.normalizedDate2)
         return date1 + (date1 !== date2 ? ' – ' + date2 : '')
       }

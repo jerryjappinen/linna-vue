@@ -51,6 +51,9 @@ export default {
 
 <style lang="scss">
 
+// Note: this won't adapt to spinner size
+$c-spinner-circle-size: 48 !default;
+
 .c-spinner-circle {
   fill: transparent;
   stroke: currentColor;
@@ -64,9 +67,6 @@ export default {
   animation-direction: normal;
   animation-timing-function: linear;
 }
-
-// Note: this won't adapt to spinner size
-$c-spinner-circle-size: 48;
 
 @keyframes c-spinner-circle {
 

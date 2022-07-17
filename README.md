@@ -3,13 +3,13 @@
 Install dependencies:
 
 ```sh
-npm i linna-sass linna-util linna-vue
+npm i lodash date-fns linna-sass linna-util linna-vue
 ```
 
 Some components might depend on modules from other packages:
 
 ```js
-npm i lodash date-fns markdown-it
+npm i markdown-it vue-slider-component
 ```
 
 Use components in your `.vue` files:

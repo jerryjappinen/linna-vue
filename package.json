@@ -40,8 +40,8 @@
     "linna-util": "^5.0.17",
     "lodash": "^4.17.21",
     "markdown-it": "^13.0.1",
-    "vue-slider-component": "^3.2.18",
-    "vue": "^3.2.37"
+    "vue": "^3.2.37",
+    "vue-slider-component": "^4.0.0-beta.9"
   },
   "devDependencies": {
     "nuxt": "^3.0.0-rc.5",
