@@ -33,6 +33,8 @@ export default {
 
   props: {
 
+    // Required
+
     userName: {
       type: String,
       required: true
@@ -44,6 +46,11 @@ export default {
     },
 
     // Optional
+
+    dark: {
+      type: Boolean,
+      default: false
+    },
 
     userDisplayName: {
       type: String,
@@ -73,10 +80,6 @@ export default {
     tweetTimestamp: {
       type: String,
       default: null
-    },
-
-    dark: {
-      default: false
     }
   },
 
@@ -153,7 +156,7 @@ export default {
       v-bind="bindings"
       class="c-tweet-placeholder twitter-tweet no-rhythm"
     >
-      <div class="c-tweet-placeholder-content">
+      <slot class="c-tweet-placeholder-content">
         <div class="c-tweet-link">
           <a :href="'https://twitter.com/' + userName">
             See {{ userName }}'s other Tweets
@@ -201,7 +204,7 @@ export default {
             </a>
           </div>
         </div>
-      </div>
+      </slot>
     </blockquote>
   </div>
 </template>
