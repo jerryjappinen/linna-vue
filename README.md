@@ -24,7 +24,7 @@ export default {
 }
 ```
 
-`components/` is NOT built during install. You must transpile them yourself in your project.
+`components/` are NOT built during install. You must transpile them yourself in your project.
 
 
 ### Nuxt module

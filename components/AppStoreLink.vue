@@ -48,5 +48,5 @@ export default {
         :light="light"
       />
     </slot>
-  </external-link>
+  </ExternalLink>
 </template>

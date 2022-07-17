@@ -7,7 +7,7 @@ import 'vue-slider-component/dist-css/vue-slider-component.css'
 import 'vue-slider-component/theme/default.css'
 
 export default {
-  name: 'Slider',
+  emits: ['update:modelValue'],
 
   components: {
     VueSlider

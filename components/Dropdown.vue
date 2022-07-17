@@ -132,7 +132,7 @@ export default {
 
     </select>
 
-    <icon
+    <Icon
       class="c-dropdown-icon"
       src="chevron-down"
     />

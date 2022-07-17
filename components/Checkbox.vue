@@ -36,7 +36,7 @@ export default {
       'c-checkbox-enabled': !disabled
     }"
   >
-    <icon
+    <Icon
       class="c-checkbox-icon"
       src="check"
     />
