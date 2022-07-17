@@ -44,3 +44,4 @@ export default {
 - [] Set test command as default in codesandbox
 - [] Add `persist` composable
 - [] Add `nuxtPage` composable
+- [] Make textfield support custom content and not just icons

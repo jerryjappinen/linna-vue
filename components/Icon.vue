@@ -1,25 +1,50 @@
 <script>
-import Vector from './Vector'
+import kebabCase from 'lodash/kebabCase'
+import pascalCase from 'lodash/pascalCase'
 
 export default {
 
-  components: {
-    Vector
+  props: {
+
+    src: {
+      type: String,
+      required: true
+    },
+
+    title: {
+      type: String,
+      required: false
+    },
+
+    // Should match your icon auto import settings
+    prefix: {
+      type: String,
+      default: 'Icon'
+    }
+
   },
 
-  props: {
-    src: {},
-    title: {}
+  computed: {
+
+    className () {
+      return kebabCase(this.src)
+    },
+
+    component () {
+      return pascalCase((this.prefix ? (this.prefix + '-') : '') + this.src)
+    }
+
   }
 
 }
 </script>
 
 <template>
-  <Vector
-    class="c-icon"
-    :src="src"
+  <component
+    :is="component"
     :title="title"
+    :class="'c-icon-' + className"
+    class="c-icon"
   />
 </template>
 

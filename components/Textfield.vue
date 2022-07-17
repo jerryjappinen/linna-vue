@@ -8,7 +8,12 @@ import Fade from './Fade'
 import Icon from './Icon'
 
 export default {
-  emits: ['update:modelValue'],
+  emits: [
+    'blur',
+    'cancel',
+    'focus',
+    'update:modelValue'
+  ],
 
   components: {
     Fade,
@@ -392,6 +397,7 @@ export default {
 }
 
 .c-textfield-not-multiline {
+
   .c-textfield-button,
   .c-textfield-icon {
     top: 50%;
@@ -462,11 +468,11 @@ export default {
     }
   }
 
-  &:hover {
-    &:not(:focus) {
-      opacity: 0.5;
-    }
-  }
+  // &:hover {
+  //   &:not(:focus) {
+  //     opacity: 0.5;
+  //   }
+  // }
 
 }
 
