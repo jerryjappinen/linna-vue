@@ -14,20 +14,22 @@ export default {
   props: {
 
     date: {
-      type: Date,
+      type: [Date, String],
       required: true
     },
 
     endDate: {
-      type: Date,
+      type: [Date, String],
       required: false
     },
 
     prefix: {
+      type: [Number, String],
       default: null
     },
 
     suffix: {
+      type: [Number, String],
       default: null
     }
 
