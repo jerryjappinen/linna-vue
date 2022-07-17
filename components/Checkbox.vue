@@ -111,14 +111,14 @@ export default {
   @include pointer;
 
   .c-checkbox-enabled {
-    @include hover-shadow-tight-rest($dark);
+    @include solid-shadow-tight-rest($dark);
   }
 
   &:focus,
   &:hover {
     .c-checkbox-enabled {
       @include transition-fast;
-      @include hover-shadow-tight;
+      @include solid-shadow-tight;
     }
   }
 }
