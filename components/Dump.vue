@@ -5,17 +5,17 @@ import isString from 'lodash/isString'
 export default {
 
   props: {
-    value: {
+    data: {
       default: null
     }
   },
 
   computed: {
     content () {
-      if (isNumber(this.value) || isString(this.value)) {
-        return this.value
+      if (isNumber(this.data) || isString(this.data)) {
+        return this.data
       }
-      return JSON.stringify(this.value, null, 2)
+      return JSON.stringify(this.data, null, 2)
     }
   }
 

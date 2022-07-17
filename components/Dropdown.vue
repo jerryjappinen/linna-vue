@@ -1,8 +1,28 @@
 <script>
+import includes from 'lodash/includes'
 import isArray from 'lodash/isArray'
 import isPlainObject from 'lodash/isPlainObject'
 
 import Icon from './Icon'
+
+const optionIsGroup = (option) => {
+  return isArray(option.value)
+}
+
+const mapToValues = (options) => {
+  let values = []
+
+  // Each option
+  options.forEach((option) => {
+    if (optionIsGroup(option)) {
+      values = values.concat(mapToValues(option.value))
+    } else {
+      values.push(option.value)
+    }
+  })
+
+  return values
+}
 
 export default {
   emits: ['update:modelValue'],
@@ -37,6 +57,16 @@ export default {
       required: true
     },
 
+    placeholder: {
+      type: [Number, String],
+      default: null
+    },
+
+    inline: {
+      type: Boolean,
+      default: false
+    },
+
     disabled: {
       type: Boolean,
       default: false
@@ -68,14 +98,24 @@ export default {
           value: option
         }
       })
+    },
+
+    // FIXME: not recursive
+    values () {
+      return mapToValues(this.options)
+    },
+
+    hasSelected () {
+      return !!(this.value && includes(this.values, this.value))
     }
 
   },
 
   methods: {
+    optionIsGroup,
 
-    optionIsGroup (option) {
-      return isArray(option.value)
+    clear () {
+      this.value = null
     }
 
   }
@@ -92,16 +132,22 @@ export default {
       'c-dropdown-block': !inline
     }"
   >
+    <span
+      v-if="placeholder && !hasSelected"
+      class="c-dropdown-placeholder"
+    >
+      {{ placeholder }}
+    </span>
 
     <select
       v-model="value"
       :disabled="!!disabled"
       class="c-dropdown-select"
     >
-
       <template v-for="(option, i) in normalizedOptions">
 
         <!-- Nested group -->
+        <!-- FIXME: would be nice if this was actually recursive without duplication -->
         <optgroup
           v-if="optionIsGroup(option)"
           :key="'group-' + i"
@@ -112,6 +158,7 @@ export default {
             v-for="(groupOption, j) in option.value"
             :key="j"
             :value="groupOption.value"
+            :disabled="groupOption.disabled"
           >
             {{ groupOption.label }}
           </option>
@@ -185,6 +232,13 @@ export default {
   right: 0;
   z-index: 2;
   pointer-events: none;
+}
+
+.c-dropdown-placeholder {
+  @include discreet;
+  @include absolute;
+  @include keep-vertical-center;
+  left: 0;
 }
 
 .c-dropdown-select,
