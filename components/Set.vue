@@ -7,7 +7,10 @@
 // http://vuejs.org/guide/components.html#Form-Input-Components-using-Custom-Events
 
 export default {
-  emits: ['update:modelValue'],
+  emits: [
+    'click',
+    'update:modelValue'
+  ],
 
   props: {
     modelValue: {},

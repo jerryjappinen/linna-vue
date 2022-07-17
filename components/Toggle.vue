@@ -58,7 +58,6 @@ export default {
     :block="block"
     :button="button"
     v-model="value"
-    @click="$emit('click')"
   ><slot /></Set>
 </template>
 
