@@ -132,13 +132,6 @@ export default {
       'c-dropdown-block': !inline
     }"
   >
-    <span
-      v-if="placeholder && !hasSelected"
-      class="c-dropdown-placeholder"
-    >
-      {{ placeholder }}
-    </span>
-
     <select
       v-model="value"
       :disabled="!!disabled"
@@ -178,6 +171,13 @@ export default {
       </template>
 
     </select>
+
+    <span
+      v-if="placeholder && !hasSelected"
+      class="c-dropdown-placeholder"
+    >
+      {{ placeholder }}
+    </span>
 
     <Icon
       class="c-dropdown-icon"
@@ -225,6 +225,15 @@ export default {
 
 }
 
+.c-dropdown-placeholder {
+  @include discreet;
+  @include absolute;
+  @include keep-vertical-center;
+  @include ellipsis;
+  max-width: 100%;
+  z-index: 1;
+}
+
 .c-dropdown-icon {
   @include absolute;
   top: 50%;
@@ -232,13 +241,6 @@ export default {
   right: 0;
   z-index: 2;
   pointer-events: none;
-}
-
-.c-dropdown-placeholder {
-  @include discreet;
-  @include absolute;
-  @include keep-vertical-center;
-  left: 0;
 }
 
 .c-dropdown-select,
