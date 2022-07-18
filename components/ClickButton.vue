@@ -141,15 +141,6 @@ export default {
       }
 
       return bindings
-    },
-
-    // We need to mess with some Vue internals to emit click events from both components and native form elements
-    // https://vuejs.org/v2/guide/components-custom-events.html#Binding-Native-Events-to-Components
-    inputListeners () {
-      return {
-        ...this.$listeners,
-        click: this.onClick
-      }
     }
 
   },
@@ -181,7 +172,7 @@ export default {
       'c-click-button-center': center
     }"
     class="c-click-button"
-    v-on="inputListeners"
+    @click="onClick"
   >
 
     <Fade>
