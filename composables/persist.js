@@ -6,13 +6,14 @@ import {
   watch,
   onMounted,
   // onUnmounted,
-  isRef
+  isRef,
+  isReactive,
+  unref
 } from 'vue'
 
 import differenceInCalendarDays from 'date-fns/differenceInCalendarDays'
-// import debounce from 'lodash/debounce'
-// import isDate from 'lodash/isDate'
-// import isFunction from 'lodash/isFunction'
+import debounce from 'lodash/debounce'
+import isDate from 'lodash/isDate'
 
 import windowExists from 'linna-util/windowExists'
 
@@ -23,48 +24,52 @@ const timestampIsFresh = (date) => {
   return Math.abs(differenceInCalendarDays(date, new Date())) < expirationCutoff
 }
 
+const getPersistKey = (instance, input) => {
+  const componentName = instance.type.__name
+  const componentInstanceId = instance.uid
+
+  if (input) {
+    const inputVal = unref(input)
+
+    if (inputVal === true) {
+      return componentName
+    }
+
+    return inputVal
+
+  }
+
+  return componentName + '-' + componentInstanceId
+}
+
 
 
 // Set a computed property to automatically store in localStorage
-export default (persistKey, persistData) => {
+export default (persistData, persistKeyInput, loadManually) => {
+  const instance = getCurrentInstance()
+  const persistKey = getPersistKey(instance, persistKeyInput)
 
-  // FIXME: can I get the component name and ID from here to use a default key?
-  // FIXME: can I get the persist prop from here?
-  const inst = getCurrentInstance()
-  console.log('getCurrentInstance', inst)
-
-
-
-  // Props
-  const isLoaded = ref(0)
-
-  // Callbacks
-  if (windowExists() && peristKey && peristKey.value && persistData) {
-
-    const callback = debounce(function () {
-      localStorage.setItem(
-
-        // Key to store value with
-        prefix + persistKey.value,
-
-        // Value to store
-        JSON.stringify({
-          timestamp: new Date(),
-          data: persistData.value
-        })
-
-      )
-    }, 500)
-
-    // Watchers
-    watch(persistKey, callback)
-    watch(persistData, callback)
-
-  }
+  // console.log('getCurrentInstance', instance)
 
 
 
   // Storage
+
+  const storePersistData = debounce(function () {
+    console.log('storePersistData', persistKey)
+
+    // Add item to store
+    localStorage.setItem(
+      prefix + persistKey.value,
+
+      // Value to store
+      JSON.stringify({
+        timestamp: new Date(),
+        data: persistData.value
+      })
+
+    )
+  }, 500)
 
   const clearByKey = (key) => {
     if (windowExists()) {
@@ -72,11 +77,15 @@ export default (persistKey, persistData) => {
     }
   }
 
-  const clear = () => {
+  const clearPersistData = () => {
+    console.log('clearPersistData', persistKey)
+
     return clearByKey(persistKey.value)
   }
 
-  const loadPersistedData = () => {
+  const loadPersistData = () => {
+    console.log('loadPersistData', persistKey)
+
     if (windowExists()) {
       if (persistKey && persistData) {
         const key = prefix + persistKey.value
@@ -99,8 +108,7 @@ export default (persistKey, persistData) => {
                 // Pass on the data that was found and fire an event
                 persistData.value = parsed.data
                 isLoaded.value = true
-                this.$emit('isLoaded', parsed.data)
-
+                instance.emit('isLoaded', parsed.data)
               }
 
             }
@@ -120,14 +128,32 @@ export default (persistKey, persistData) => {
         // Emit loaded event with null value
         if (!isLoaded.value) {
           isLoaded.value = true
-          this.$emit('isLoaded', null)
+          instance.emit('isLoaded', null)
         }
 
       }
     }
   }
 
-  onMounted(loadPersistedData)
+
+
+  // Props
+  const isLoaded = ref(0)
+
+  // Watchers
+  if (windowExists() && persistKey) {
+
+    if (isRef(persistKey) || isReactive(persistKey)) {
+      watch(persistKey, storePersistData)
+    }
+
+    watch(persistData, storePersistData)
+  }
+
+  // Lifecycle
+  if (!loadManually) {
+    onMounted(loadPersistData)
+  }
 
 
 
@@ -136,12 +162,12 @@ export default (persistKey, persistData) => {
     // init,
     // uninit,
     isLoaded,
-    clear,
+    clearPersistData,
     // componentName,
     // componentId,
     // defaultPersistKey,
     // defaultInstancePersistKey,
-    key: persistKey,
-    data: persistData
+    persistKey,
+    persistData
   }
 }
