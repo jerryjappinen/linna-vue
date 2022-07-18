@@ -15,7 +15,7 @@ export default (prefix) => {
       // Auto load composables
       'composables:dirs' (dirs) {
         dirs.push({
-          path: fileURLToPath(new URL('./composables', import.meta.url)),
+          path: fileURLToPath(new URL('../composables', import.meta.url)),
           prefix: prefix || ''
         })
       },
@@ -23,7 +23,7 @@ export default (prefix) => {
       // Auto load components
       'components:dirs' (dirs) {
         dirs.push({
-          path: fileURLToPath(new URL('./components', import.meta.url)),
+          path: fileURLToPath(new URL('../components', import.meta.url)),
           prefix: prefix || ''
         })
       }
