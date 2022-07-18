@@ -74,7 +74,7 @@ export default {
 
       return vnode
     } catch (e) {
-      throw new Error('<animation> can only render one child component. (' + e.message + ')')
+      throw new Error('<Animation> can only render one child component. (' + e.message + ')')
     }
   }
 

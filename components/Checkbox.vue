@@ -36,10 +36,9 @@ export default {
       'c-checkbox-enabled': !disabled
     }"
   >
-    <Icon
-      class="c-checkbox-icon"
-      src="check"
-    />
+    <slot name="icon" class="c-checkbox-icon">
+      <IconCheck />
+    </slot>
   </div>
 </template>
 

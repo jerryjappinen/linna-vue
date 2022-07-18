@@ -3,8 +3,6 @@ import includes from 'lodash/includes'
 import isArray from 'lodash/isArray'
 import isPlainObject from 'lodash/isPlainObject'
 
-import Icon from './Icon'
-
 const optionIsGroup = (option) => {
   return isArray(option.value)
 }
@@ -26,10 +24,6 @@ const mapToValues = (options) => {
 
 export default {
   emits: ['update:modelValue'],
-
-  components: {
-    Icon
-  },
 
   props: {
 
@@ -179,10 +173,9 @@ export default {
       {{ placeholder }}
     </span>
 
-    <Icon
-      class="c-dropdown-icon"
-      src="chevron-down"
-    />
+    <slot name="icon" class="c-dropdown-icon">
+      <IconChevronDown />
+    </slot>
 
   </span>
 </template>
@@ -193,6 +186,12 @@ export default {
 .c-dropdown-select,
 .c-dropdown-icon {
   @include relative;
+}
+
+.c-dropdown-select,
+.c-dropdown-icon {
+  @include transition-fast;
+  @include transition-properties-common;
 }
 
 .c-dropdown {
@@ -236,17 +235,13 @@ export default {
 
 .c-dropdown-icon {
   @include absolute;
+  width: 1em;
+  height: 1em;
   top: 50%;
   transform: translateY(-50%);
   right: 0;
   z-index: 2;
   pointer-events: none;
-}
-
-.c-dropdown-select,
-.c-dropdown-icon {
-  @include transition-fast;
-  @include transition-properties-common;
 }
 
 </style>

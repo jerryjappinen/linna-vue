@@ -1,58 +1,45 @@
 <script>
-import kebabCase from 'lodash/kebabCase'
-import pascalCase from 'lodash/pascalCase'
+import { h } from 'vue'
 
 export default {
+  setup (props, { slots }) {
+    const className = 'c-icon'
 
-  props: {
+    console.log('slots.default', slots)
 
-    src: {
-      type: String,
-      required: true
-    },
+    const children = slots.default()
 
-    title: {
-      type: String,
-      required: false
-    },
-
-    // Should match your icon auto import settings
-    prefix: {
-      type: String,
-      default: 'Icon'
+    if (children && children.length) {
+      children.forEach((child) => {
+        console.log('child', child)
+        if (child.el) {
+          child.el.classlist.add(className)
+        }
+      })
     }
 
-  },
-
-  computed: {
-
-    className () {
-      return kebabCase(this.src)
-    },
-
-    component () {
-      return pascalCase((this.prefix ? (this.prefix + '-') : '') + this.src)
-    }
-
+    return () => h(slots.default)
   }
-
 }
 </script>
 
-<template>
-  <component
-    :is="component"
-    :title="title"
-    :class="'c-icon-' + className"
-    class="c-icon"
-  />
-</template>
-
+<!-- FIXME: would be great to get rid of this wrapper element -->
 <style lang="scss">
 
 .c-icon {
+  @include transition-properties-common;
+  @include transition-fast;
+
+  @include flex;
+  @include inline-flex;
   width: 1em;
   height: 1em;
+
+  // svg {
+  //   width: 1em;
+  //   height: 1em;
+  // }
+
 }
 
 </style>

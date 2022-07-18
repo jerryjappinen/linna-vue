@@ -293,11 +293,8 @@ export default {
       @keyup.esc="onEsc"
     >
 
-    <Icon
-      v-if="icon"
-      :src="icon"
-      class="c-textfield-icon"
-    />
+    <!-- FIXME: change class name and dimensions to dynamic width -->
+    <slot class="c-textfield-icon" />
 
     <template v-if="clear && !multiline">
 
@@ -307,7 +304,7 @@ export default {
           class="c-textfield-button c-textfield-clear"
           @click="onClearClick"
         >
-          <Icon src="cross" />
+          <IconCross />
         </span>
       </Fade>
 
@@ -321,7 +318,7 @@ export default {
           class="c-textfield-button c-textfield-undo"
           @click="onUndoClick"
         >
-          <Icon src="undo" />
+          <IconUndo />
         </span>
       </Fade>
 

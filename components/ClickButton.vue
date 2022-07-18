@@ -1,17 +1,19 @@
 <script>
+import Fade from './Fade'
+import Icon from './Icon'
+import Spinner from './Spinner'
+
 export default {
+
+  components: {
+    Fade,
+    Icon,
+    Spinner
+  },
 
   props: {
 
-    block: {
-      type: Boolean,
-      default: false
-    },
-
-    pad: {
-      type: Boolean,
-      default: null
-    },
+    // Target link
 
     href: {
       type: String,
@@ -19,7 +21,7 @@ export default {
     },
 
     to: {
-      type: [Object, String],
+      type: [String, Object],
       default: null
     },
 
@@ -33,75 +35,131 @@ export default {
       default: null
     },
 
-    submit: {
-      type: Boolean,
-      default: null
-    },
-
     external: {
-      type: Boolean,
       default: null
     },
 
     noIndex: {
-      type: Boolean,
+      default: null
+    },
+
+    submit: {
+      default: null
+    },
+
+    tab: {
+      default: true
+    },
+
+    iconLeft: {
+      default: null
+    },
+
+    iconRight: {
+      default: null
+    },
+
+
+
+    // State params
+
+    block: {
+      default: null
+    },
+
+    center: {
+      default: null
+    },
+
+    loading: {
       default: null
     },
 
     disabled: {
-      type: Boolean,
-      default: null
+      default: false
     }
 
   },
 
   computed: {
 
-    tag () {
-      if (this.to) {
-        return 'NuxtLink'
-      } else if (this.href || this.mailto || this.tel) {
+    component () {
+
+      if (this.href || this.mailto || this.tel) {
         return 'a'
+      }
+
+      if (this.to) {
+        return this.$nuxt ? 'nuxt-link' : 'router-link'
       }
 
       return 'button'
     },
 
-    is () {
-      return this.tag === 'NuxtLink' ? resolveComponent('NuxtLink') : this.tag
+    isRouterLink () {
+      return !!(this.component === 'router-link' || this.component === 'nuxt-link')
     },
 
-    bind () {
-      const bind = {
-        disabled: this.disabled ? true : undefined
+    bindings () {
+      const bindings = {}
+
+      if (!this.tab) {
+        bindings.tabindex = '-1'
+      }
+
+      // Email address
+      if (this.mailto) {
+        bindings.href = 'mailto:' + this.mailto
+
+      // Phone link
+      } else if (this.tel) {
+        bindings.href = 'tel:' + this.tel
+
+      // Button
+      } else if (this.component === 'button') {
+        bindings.type = this.submit ? 'submit' : 'button'
+
+      // Link
+      } else {
+
+        if (this.to) {
+          bindings.to = this.to
+        }
+
+        if (this.href) {
+          bindings.href = this.href
+        }
+
       }
 
       if (this.noIndex || (this.external && this.noIndex !== false)) {
-        bind.rel = 'nofollow noopener noreferrer'
-      } else {
-        bind['no-rel'] = true
+        bindings.rel = 'nofollow noopener noreferrer'
       }
 
       if (this.external) {
-        bind.target = '_blank'
+        bindings.target = '_blank'
       }
 
-      // Type-specific
-      if (this.tag === 'NuxtLink') {
-        bind.to = this.to
+      return bindings
+    },
 
-      } else if (this.tag === 'a') {
-        bind.href = this.href
-          ? this.href
-          : this.mailto
-            ? 'mailto:' + this.mailto
-            : this.tel ? 'tel:' + this.tel : null
-
-      } else if (this.tag === 'button') {
-        bind.type = this.submit ? 'submit' : 'button'
+    // We need to mess with some Vue internals to emit click events from both components and native form elements
+    // https://vuejs.org/v2/guide/components-custom-events.html#Binding-Native-Events-to-Components
+    inputListeners () {
+      return {
+        ...this.$listeners,
+        click: this.onClick
       }
+    }
 
-      return bind
+  },
+
+  methods: {
+
+    onClick (event) {
+      if (!this.disabled) {
+        this.$emit('click', event)
+      }
     }
 
   }
@@ -111,55 +169,184 @@ export default {
 
 <template>
   <component
-    v-bind="bind"
-    :is="is"
+    :is="component"
+    v-bind="bindings"
+    :disabled="disabled"
     :class="{
-      ['c-click-button-inline']: !block,
-      ['c-click-button-block']: block,
-      ['c-click-button-pad']: color === 'primary' || pad,
-      ['c-click-button-enabled']: !disabled,
-      ['c-click-button-disabled']: disabled
+      'c-click-button-loading': loading,
+      'c-click-button-not-loading': !loading,
+      'c-click-button-disabled': disabled,
+      'c-click-button-enabled': !disabled,
+      'c-click-button-block': block,
+      'c-click-button-center': center
     }"
     class="c-click-button"
+    v-on="inputListeners"
   >
-    <slot />
+
+    <Fade>
+      <Spinner
+        v-if="loading"
+        class="c-click-button-spinner"
+      />
+    </Fade>
+
+    <Fade>
+      <Icon v-if="$slots['icon-left'] && !loading">
+        <slot
+          name="icon-left"
+          class="c-click-button-icon c-click-button-icon-left"
+        />
+      </Icon>
+    </Fade>
+
+    <Fade>
+      <Icon v-if="$slots['icon-right'] && !loading">
+        <slot
+          name="icon-right"
+          class="c-click-button-icon c-click-button-icon-right"
+        />
+      </Icon>
+    </Fade>
+
+    <span
+      :class="{
+        'c-click-button-content-block': block,
+        'c-click-button-content-center': center
+      }"
+      class="c-click-button-content"
+    >
+      <slot />
+    </span>
+
   </component>
 </template>
 
 <style lang="scss">
 
 .c-click-button {
-  @include transition-properties-common;
-  @include transition-fast;
-
-  align-items: center;
-}
-
-.c-click-button-inline {
+  @include relative;
+  @include border-box;
+  @include flex-center;
   @include inline-flex;
+  line-height: inherit;
+  border-width: 0;
+  text-align: inherit;
+  white-space: nowrap;
 }
 
 .c-click-button-block {
-  @include block;
-  text-align: center;
+  @include flex;
+  width: 100%;
+}
+
+.c-click-button-center {
   justify-content: center;
+}
+
+// .c-click-button-block-content {
+//   align-items: center;
+// }
+
+// .c-click-button-content-center {
+//   align-items: center;
+// }
+
+.c-click-button-content {
+  @include border-box;
+  @include relative;
+  @include block;
+  @include flex-center;
+  @include flex;
+  z-index: 2;
+
+  @include transition-properties(opacity);
+}
+
+.c-click-button-spinner {
+  @include keep-full-center;
+  z-index: 1;
+  height: 1em;
+}
+
+.c-click-button-icon {
+  @include absolute;
+  width: 1em;
+  height: 1em;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.c-click-button-icon-left {
+  left: 0;
+
+  ~ .c-click-button-content {
+    padding-left: calc(1em + #{$pad-tight-horizontal});
+  }
+
+}
+
+.c-click-button-icon-right {
+  right: 0;
+
+  ~ .c-click-button-content {
+    padding-right: calc(1em + #{$pad-tight-horizontal});
+  }
+
+}
+
+
+
+// Loading states
+
+.c-click-button-not-loading {
+
+  .c-click-button-content,
+  .c-click-button-spinner {
+    @include transition-slow;
+  }
+
+  .c-click-button-content {
+    opacity: 1;
+    @include transition-delay-slow;
+  }
+
+}
+
+.c-click-button-loading {
+
+  .c-click-button-content,
+  .c-click-button-spinner {
+    @include transition-fast;
+  }
+
+  .c-click-button-content {
+    opacity: 0;
+  }
+
+  .c-click-button-spinner {
+    opacity: 1;
+    @include transition-delay-fast;
+  }
+
+}
+
+
+
+// States
+
+.c-click-button-disabled {
+  @include inherit-cursor;
 }
 
 .c-click-button-enabled {
   @include pointer;
 
   &:active {
-    transform: translateY(2px);
+    // @include scale(0.975);
+    @include translate-down(2px);
   }
-}
 
-.c-click-button-pad {
-  @include pad;
-}
-
-.c-click-button-disabled {
-  @include inherit-cursor;
-  @include no-pointer-events;
 }
 
 </style>
