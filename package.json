@@ -10,11 +10,11 @@
     "components/*",
     "composables/*",
     "mixins/*",
+    "nuxt/*",
     "composables.js",
     "components.js",
     "mixins.js",
     "index.js",
-    "nuxt.js",
     "dist/*"
   ],
   "license": "MIT",
