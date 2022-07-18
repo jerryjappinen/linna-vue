@@ -1,15 +1,15 @@
-import cursor from './composables/cursor'
-import gamepad from './composables/gamepad'
-import isMounted from './composables/isMounted'
-import network from './composables/network'
-import persist from './composables/persist'
-import viewport from './composables/viewport'
+import useCursor from './composables/useCursor'
+import useGamepad from './composables/useGamepad'
+import useIsMounted from './composables/useIsMounted'
+import useNetwork from './composables/useNetwork'
+import usePersist from './composables/usePersist'
+import useViewport from './composables/useViewport'
 
 export default {
-  cursor,
-  gamepad,
-  isMounted,
-  network,
-  persist,
-  viewport
+  useCursor,
+  useGamepad,
+  useIsMounted,
+  useNetwork,
+  usePersist,
+  useViewport
 }

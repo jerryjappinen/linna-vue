@@ -8,7 +8,5 @@ export default () => {
     isMounted.value = true
   })
 
-  return {
-    isMounted
-  }
+  return isMounted
 }

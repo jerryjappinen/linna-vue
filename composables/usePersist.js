@@ -18,7 +18,6 @@ import windowExists from 'linna-util/windowExists'
 
 
 // Helpers
-
 const prefix = 'vue-persist-'
 const expirationCutoff = 14 // days
 const storageDelay = 1000 // ms
