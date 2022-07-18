@@ -159,14 +159,8 @@ export default (persistData, persistKeyInput, loadManually) => {
 
   // Expose managed state as return value
   return {
-    // init,
-    // uninit,
-    isLoaded,
     clearPersistData,
-    // componentName,
-    // componentId,
-    // defaultPersistKey,
-    // defaultInstancePersistKey,
+    isLoaded,
     persistKey,
     persistData
   }
