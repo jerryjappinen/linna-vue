@@ -1,5 +1,5 @@
 <script>
-import useTime from '../composables/time'
+import useTime from '../composables/useTime'
 
 import Duration from './Duration'
 
