@@ -4,21 +4,15 @@ export default {
 
   data () {
     return {
-      persist: null
+      persist: undefined,
+      persistKey: undefined,
+      persistLoaded: false,
+      clearPersistData: undefined
     }
-  },
-
-  computed: {
-
-    // Override to provide another name
-    persistKey () {
-      return this.$options.name + '-' + this.id
-    }
-
   },
 
   mounted () {
-    this.persist = usePersist(this.persisKey, this.persistData)
+    const { clearPersistData, persistLoaded } = usePersist(this.persistKey, this.persist, this.loadPersistManually)
   }
 
 }

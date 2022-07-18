@@ -2,10 +2,8 @@
 import {
   getCurrentInstance,
   ref,
-  // computed,
   watch,
   onMounted,
-  // onUnmounted,
   isRef,
   isReactive,
   unref
@@ -17,8 +15,13 @@ import isDate from 'lodash/isDate'
 
 import windowExists from 'linna-util/windowExists'
 
+
+
+// Helpers
+
 const prefix = 'vue-persist-'
 const expirationCutoff = 14 // days
+const storageDelay = 1000 // ms
 
 const timestampIsFresh = (date) => {
   return Math.abs(differenceInCalendarDays(date, new Date())) < expirationCutoff
@@ -44,7 +47,8 @@ const getPersistKey = (instance, input) => {
 
 
 
-// Set a computed property to automatically store in localStorage
+// Set a property to automatically store in and load from localStorage
+// This makes UI persistence very easy
 export default (persistData, persistKeyInput, loadManually) => {
   const instance = getCurrentInstance()
   const persistKey = getPersistKey(instance, persistKeyInput)
@@ -58,22 +62,29 @@ export default (persistData, persistKeyInput, loadManually) => {
   const storePersistData = debounce(function () {
     console.log('storePersistData', persistKey)
 
-    // Add item to store
-    localStorage.setItem(
-      prefix + persistKey.value,
+    // NOTE: undefined will not be stored
+    // If you want to override older values explicitly, you must use null
+    if (persistData.value !== undefined) {
 
-      // Value to store
-      JSON.stringify({
-        timestamp: new Date(),
-        data: persistData.value
-      })
+      // Add item to store
+      localStorage.setItem(
+        prefix + persistKey.value,
 
-    )
-  }, 500)
+        // Value to store
+        JSON.stringify({
+          timestamp: new Date(),
+          data: persistData.value
+        })
+
+      )
+
+    }
+
+  }, storageDelay)
 
   const clearByKey = (key) => {
     if (windowExists()) {
-      localStorage.removeItem(key)
+      localStorage.removeItem(prefix + key)
     }
   }
 
@@ -107,8 +118,8 @@ export default (persistData, persistKeyInput, loadManually) => {
 
                 // Pass on the data that was found and fire an event
                 persistData.value = parsed.data
-                isLoaded.value = true
-                instance.emit('isLoaded', parsed.data)
+                persistLoaded.value = true
+                instance.emit('persistLoaded', parsed.data)
               }
 
             }
@@ -126,9 +137,9 @@ export default (persistData, persistKeyInput, loadManually) => {
         }
 
         // Emit loaded event with null value
-        if (!isLoaded.value) {
-          isLoaded.value = true
-          instance.emit('isLoaded', null)
+        if (!persistLoaded.value) {
+          persistLoaded.value = true
+          instance.emit('persistLoaded', null)
         }
 
       }
@@ -138,7 +149,7 @@ export default (persistData, persistKeyInput, loadManually) => {
 
 
   // Props
-  const isLoaded = ref(0)
+  const persistLoaded = ref(0)
 
   // Watchers
   if (windowExists() && persistKey) {
@@ -159,9 +170,9 @@ export default (persistData, persistKeyInput, loadManually) => {
 
   // Expose managed state as return value
   return {
-    clearPersistData,
-    isLoaded,
+    persistData,
+    persistLoaded,
     persistKey,
-    persistData
+    clearPersistData
   }
 }
