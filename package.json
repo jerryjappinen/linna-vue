@@ -7,11 +7,16 @@
   "main": "dist/library.js",
   "module": "dist/library.mjs",
   "files": [
-    "components.js",
-    "index.js",
-    "nuxt.js",
     "components/*",
     "composables/*",
+    "mixins/*",
+
+    "composables.js",
+    "components.js",
+    "mixins.js",
+
+    "index.js",
+    "nuxt.js",
     "dist/*"
   ],
   "license": "MIT",
