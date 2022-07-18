@@ -1,6 +1,6 @@
 {
   "name": "linna-vue",
-  "version": "0.1.17",
+  "version": "0.1.18",
   "description": "Component library for Vue.",
   "private": false,
   "type": "module",
@@ -10,11 +10,9 @@
     "components/*",
     "composables/*",
     "mixins/*",
-
     "composables.js",
     "components.js",
     "mixins.js",
-
     "index.js",
     "nuxt.js",
     "dist/*"
