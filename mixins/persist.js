@@ -1,4 +1,4 @@
-import usePersist from '../composables/persist'
+import usePersist from '../composables/usePersist'
 
 export default {
 
