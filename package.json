@@ -11,6 +11,7 @@
     "index.js",
     "nuxt.js",
     "components/*",
+    "composables/*",
     "dist/*"
   ],
   "license": "MIT",

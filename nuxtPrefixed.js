@@ -1,3 +1,3 @@
 import defineThisNuxtModule from './defineThisNuxtModule'
 
-export default defineThisNuxtModule()
+export default defineThisNuxtModule('linna')
