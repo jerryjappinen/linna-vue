@@ -1,9 +1,8 @@
 import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 
-import debounce from 'lodash/debounce'
+import { debounce } from 'lodash'
 
-import detectObtrusiveScrollbars from 'linna-util/detectObtrusiveScrollbars'
-import userPrefersDarkMode from 'linna-util/userPrefersDarkMode'
+import { detectObtrusiveScrollbars, userPrefersDarkMode } from 'linna-util'
 
 // Scroll position or dimensions are updated at most once per this amount of ms
 const debounceDelay = 10

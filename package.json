@@ -41,14 +41,14 @@
   },
   "peerDependencies": {
     "linna-sass": "^0.2.4",
-    "linna-util": "^5.0.17",
+    "linna-util": "^6.0.1",
     "lodash": "^4.17.21",
     "markdown-it": "^13.0.1",
     "vue": "^3.2.37",
-    "vue-slider-component": "^4.0.0-beta.9"
+    "vue-slider-component": "^4.1.0-beta.1"
   },
   "devDependencies": {
-    "nuxt": "^3.0.0-rc.5",
+    "nuxt": "^3.0.0-rc.6",
     "rollup": "^2.77.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-vue": "^6.0.0",

@@ -1,13 +1,9 @@
 <script>
-import differenceInDays from 'date-fns/differenceInDays'
-import formatRelative from 'date-fns/formatRelative'
-import isDate from 'date-fns/isDate'
+import { differenceInDays, formatRelative, isDate } from 'date-fns'
 
-import isNumber from 'lodash/isNumber'
-import upperFirst from 'lodash/upperFirst'
+import { isNumber, upperFirst } from 'lodash'
 
-import formatDate from 'linna-util/formatDate'
-import formatMachineReadableDate from 'linna-util/formatMachineReadableDate'
+import { formatDate, formatMachineReadableDate } from 'linna-util'
 
 export default {
 

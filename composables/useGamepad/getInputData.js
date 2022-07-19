@@ -1,4 +1,4 @@
-import getDirection from 'linna-util/getDirection'
+import { getDirection } from 'linna-util'
 
 import getCompassDirection from './getCompassDirection'
 import getDiagonalDirection from './getDiagonalDirection'

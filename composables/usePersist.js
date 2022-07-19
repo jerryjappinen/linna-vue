@@ -9,11 +9,10 @@ import {
   unref
 } from 'vue'
 
-import differenceInCalendarDays from 'date-fns/differenceInCalendarDays'
-import debounce from 'lodash/debounce'
-import isDate from 'lodash/isDate'
+import { differenceInCalendarDays } from 'date-fns'
+import { debounce, isDate } from 'lodash'
 
-import windowExists from 'linna-util/windowExists'
+import { windowExists } from 'linna-util'
 
 
 

@@ -1,6 +1,6 @@
 <script>
 // Wrapper component for reducing boilerplate with transition
-import includes from 'lodash/includes'
+import { includes } from 'lodash'
 
 const modes = ['out-in', 'simultaneous', 'in-out']
 const defaultMode = modes[0]

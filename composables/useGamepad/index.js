@@ -1,6 +1,6 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 
-import gamepadIsSupported from 'linna-util/gamepadIsSupported'
+import { gamepadIsSupported } from 'linna-util'
 // import getDirection from 'linna-util/getDirection'
 // import getGamepads from 'linna-util/getGamepads'
 
@@ -165,11 +165,22 @@ export default () => {
   })
 
   onUnmounted(() => {
-    updateGamepadList()
-
     window.removeEventListener('gamepadconnected', onGamepadConnected)
     window.removeEventListener('gamepaddisconnected', onGamepadDisconnected)
+
+    updateGamepadList()
+    endMainLoop()
   })
 
-  return {}
+  return {
+    isSupported,
+    gamepads,
+
+    inputs,
+    connectedGamepads,
+    connectedGamepadIndices,
+    firstConnectedGamepad,
+    firstConnectedGamepadInputs,
+    hasConnectedGamepads
+  }
 }

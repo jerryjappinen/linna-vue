@@ -1,5 +1,5 @@
 <script>
-import isAbsoluteUrl from 'linna-util/isAbsoluteUrl'
+import { isAbsoluteUrl } from 'linna-util'
 
 export default {
 

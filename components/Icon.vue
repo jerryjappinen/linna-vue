@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
 import { h } from 'vue'
 
 export default {
@@ -21,7 +21,13 @@ export default {
     return () => h(slots.default)
   }
 }
-</script>
+</script> -->
+
+<template>
+  <span class="c-icon">
+    <slot class="c-icon-svg" />
+  </span>
+</template>
 
 <!-- FIXME: would be great to get rid of this wrapper element -->
 <style lang="scss">
