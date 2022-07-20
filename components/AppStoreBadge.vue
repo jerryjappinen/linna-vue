@@ -1,12 +1,10 @@
-<script>
-export default {
-  props: {
-    light: {
-      type: Boolean,
-      default: false
-    }
+<script setup>
+defineProps({
+  light: {
+    type: Boolean,
+    default: false
   }
-}
+})
 </script>
 
 <template>

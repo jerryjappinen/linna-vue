@@ -1,163 +1,153 @@
-<script>
+<script setup>
 import { isNumber } from 'lodash-es'
+import { ref, computed } from 'vue'
 
 // https://nightcatsama.github.io/vue-slider-component/#/
 import VueSlider from 'vue-slider-component/dist-css/vue-slider-component.umd.min.js'
 import 'vue-slider-component/dist-css/vue-slider-component.css'
-import 'vue-slider-component/theme/default.css'
+import 'vue-slider-component/lib/theme/default.scss'
 
-export default {
-  emits: ['update:modelValue'],
+const props = defineProps({
 
-  components: {
-    VueSlider
+  modelValue: {
+    type: Number,
+    required: true
   },
 
-  props: {
-
-    modelValue: {
-      type: Number,
-      required: true
-    },
-
-    disabled: {
-      type: Boolean,
-      default: false
-    },
-
-    lazy: {
-      type: Boolean,
-      default: false
-    },
-
-    inverted: {
-      type: Boolean,
-      default: false
-    },
-
-    vertical: {
-      type: Boolean,
-      default: false
-    },
-
-    data: {
-      type: [Array, Object],
-      default: null
-    },
-
-    min: {
-      type: Number,
-      default: null
-    },
-
-    max: {
-      type: Number,
-      default: null
-    },
-
-    interval: {
-      type: Number,
-      default: null
-    },
-
-    tooltip: {
-      type: [Boolean, String],
-      default: true
-    }
-
+  disabled: {
+    type: Boolean,
+    default: false
   },
 
-  data () {
-    return {
-      mouseDown: false
-    }
+  lazy: {
+    type: Boolean,
+    default: false
   },
 
-  computed: {
-
-    value: {
-      get () {
-        return this.modelValue
-      },
-      set (value) {
-        this.$emit('update:modelValue', value)
-      }
-    },
-
-    options () {
-      const options = {
-        dotSize: 24,
-        height: 4,
-        duration: 0.15,
-        dragOnClick: true,
-        adsorb: true,
-        tooltip: this.tooltip ? 'active' : 'none',
-        tooltipPlacement: this.tooltip === true ? 'top' : this.tooltip,
-        enableCross: false
-
-        // dataLabel: 'label',
-        // dataValue: 'value'
-      }
-
-      if (this.lazy) {
-        options.lazy = true
-      }
-
-      if (this.disabled) {
-        options.disabled = true
-      }
-
-      if (this.data) {
-        options.data = this.data
-      }
-
-      if (isNumber(this.min)) {
-        options.min = this.min
-      }
-
-      if (isNumber(this.min)) {
-        options.min = this.min
-      }
-
-      if (isNumber(this.max)) {
-        options.max = this.max
-      }
-
-      if (this.vertical) {
-        options.direction = 'ttb'
-      }
-
-      if (this.inverted) {
-        if (this.vertical) {
-          options.direction = 'btt'
-        } else {
-          options.direction = 'rtl'
-        }
-      }
-
-      return options
-    }
-
+  inverted: {
+    type: Boolean,
+    default: false
   },
 
-  methods: {
+  vertical: {
+    type: Boolean,
+    default: false
+  },
 
-    onMouseDown () {
-      this.mouseDown = true
-    },
+  data: {
+    type: [Array, Object],
+    default: null
+  },
 
-    onMouseUp () {
-      this.mouseDown = false
-    }
+  min: {
+    type: Number,
+    default: null
+  },
 
+  max: {
+    type: Number,
+    default: null
+  },
+
+  interval: {
+    type: Number,
+    default: null
+  },
+
+  tooltip: {
+    type: [Boolean, String],
+    default: true
   }
 
+})
+
+const emit = defineEmits([
+  'update:modelValue'
+])
+
+
+
+const mouseDown = ref(false)
+
+const value = computed({
+
+  get () {
+    return props.modelValue.value
+  },
+
+  set (value) {
+    emit('update:modelValue', value)
+  }
+
+})
+
+const options = computed(() => {
+  const opts = {
+    dotSize: 24,
+    height: 4,
+    duration: 0.15,
+    dragOnClick: true,
+    adsorb: true,
+    tooltip: props.tooltip ? 'active' : 'none',
+    tooltipPlacement: props.tooltip === true ? 'top' : props.tooltip,
+    enableCross: false
+
+    // dataLabel: 'label',
+    // dataValue: 'value'
+  }
+
+  if (props.lazy) {
+    opts.lazy = true
+  }
+
+  if (props.disabled) {
+    opts.disabled = true
+  }
+
+  if (props.data) {
+    opts.data = props.data
+  }
+
+  if (isNumber(props.min)) {
+    opts.min = props.min
+  }
+
+  if (isNumber(props.min)) {
+    opts.min = props.min
+  }
+
+  if (isNumber(props.max)) {
+    opts.max = props.max
+  }
+
+  if (props.vertical) {
+    opts.direction = 'ttb'
+  }
+
+  if (props.inverted) {
+    if (props.vertical) {
+      opts.direction = 'btt'
+    } else {
+      opts.direction = 'rtl'
+    }
+  }
+
+  return opts
+})
+
+
+
+const onMouseDown = () => {
+  mouseDown.value = true
+}
+
+const onMouseUp = () => {
+  mouseDown.value = false
 }
 </script>
 
 <template>
   <VueSlider
-    v-model="value"
     class="c-slider control"
     :class="{
       'control-disabled': disabled,
@@ -165,6 +155,7 @@ export default {
       'control-mouse-down': mouseDown
     }"
     v-bind="options"
+    v-model="value"
     v-on="{
       mouseup: onMouseUp,
       mousedown: onMouseDown
