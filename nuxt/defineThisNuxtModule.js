@@ -1,5 +1,5 @@
 import { defineNuxtModule, addAutoImportDir, addComponentsDir } from '@nuxt/kit'
-// import { camelCase } from 'lodash'
+// import { camelCase } from 'lodash-es'
 import { fileURLToPath } from 'node:url'
 
 // const composableNames = [

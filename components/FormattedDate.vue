@@ -1,7 +1,7 @@
 <script>
 import { differenceInDays, formatRelative, isDate } from 'date-fns'
 
-import { isNumber, upperFirst } from 'lodash'
+import { isNumber, upperFirst } from 'lodash-es'
 
 import { formatDate, formatMachineReadableDate } from 'linna-util'
 

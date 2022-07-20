@@ -1,5 +1,5 @@
 <script>
-import { isNumber, isString } from 'lodash'
+import { isNumber, isString } from 'lodash-es'
 
 export default {
 

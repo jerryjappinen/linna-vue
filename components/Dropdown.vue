@@ -1,5 +1,5 @@
 <script>
-import { includes, isArray, isPlainObject } from 'lodash'
+import { includes, isArray, isPlainObject } from 'lodash-es'
 
 const optionIsGroup = (option) => {
   return isArray(option.value)

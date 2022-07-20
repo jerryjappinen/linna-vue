@@ -1,5 +1,5 @@
 <script>
-import { isNumber } from 'lodash'
+import { isNumber } from 'lodash-es'
 
 // https://nightcatsama.github.io/vue-slider-component/#/
 import VueSlider from 'vue-slider-component/dist-css/vue-slider-component.umd.min.js'

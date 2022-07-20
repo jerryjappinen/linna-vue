@@ -1,37 +1,23 @@
-<script>
+<script setup>
 import useTime from '../composables/useTime'
 
 import Duration from './Duration'
 
 const time = useTime()
 
-export default {
-
-  components: {
-    Duration
-  },
-
-  props: {
-    date: {},
-    prefix: {},
-    suffix: {},
-    cutoff: {}
-  },
-
-  data () {
-    return {
-      currentTime: time.current
-    }
-  }
-
-}
+defineProps({
+  date: {},
+  prefix: {},
+  suffix: {},
+  cutoff: {}
+})
 </script>
 
 <template>
   <Duration
     class="c-live-duration"
     :date="date"
-    :end-date="currentTime"
+    :end-date="time.current"
     :prefix="prefix"
     :suffix="suffix"
     :cutoff="cutoff"

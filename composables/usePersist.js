@@ -10,7 +10,7 @@ import {
 } from 'vue'
 
 import { differenceInCalendarDays } from 'date-fns'
-import { debounce, isDate } from 'lodash'
+import { debounce, isDate } from 'lodash-es'
 
 import { windowExists } from 'linna-util'
 

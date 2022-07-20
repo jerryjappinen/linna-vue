@@ -1,5 +1,5 @@
 <script>
-import { isArray, isNaN, isNumber, isString } from 'lodash'
+import { isArray, isNaN, isNumber, isString } from 'lodash-es'
 
 import Fade from './Fade'
 import Icon from './Icon'
