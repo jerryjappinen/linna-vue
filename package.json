@@ -41,7 +41,7 @@
   },
   "peerDependencies": {
     "lodash-es": "^4.17.21",
-    "linna-sass": "^1.0.0",
+    "linna-sass": "^1.0.1",
     "linna-util": "^6.0.2",
     "markdown-it": "^13.0.1",
     "vue": "^3.2.37",

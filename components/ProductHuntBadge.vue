@@ -1,62 +1,33 @@
 <script>
-import ExternalLink from './ExternalLink'
-
-export default {
-
-  components: {
-    ExternalLink
+const props = defineProps({
+  postId: {
+    type: [Number, String],
+    required: true
   },
 
-  props: {
-
-    postId: {
-      type: [Number, String],
-      required: true
-    },
-
-    postSlug: {
-      type: String,
-      required: true
-    },
-
-    title: {
-      type: String,
-      required: false
-    },
-
-    theme: {
-      type: String,
-      default: 'dark',
-      validator (value) {
-        return ['light', 'dark'].indexOf(value) !== -1
-      }
-    }
-
+  title: {
+    type: String,
+    required: false
   },
 
-  computed: {
-
-    href () {
-      return 'https://www.producthunt.com/posts/' + this.postSlug + '?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-' + this.postSlug
-    },
-
-    src () {
-      return 'https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=' + this.postId + '&theme=' + this.theme
-    }
-
+  light: {
+    type: Boolean,
+    default: false
   }
+})
 
-}
+const href = computed(() => {
+  return 'https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=' + props.postId + '&theme=' + (props.light ? 'light' : 'dark')
+})
 </script>
 
 <template>
-  <ExternalLink :href="href">
-    <img
-      :src="src"
-      :alt="title"
-      style="width: 250px; height: 54px;"
-      width="250px"
-      height="54px"
-    >
-  </ExternalLink>
+  <img
+    :src="src"
+    :alt="title"
+    style="width: 250px; height: 54px;"
+    width="250px"
+    height="54px"
+    class="c-product-hunt-badge"
+  >
 </template>
