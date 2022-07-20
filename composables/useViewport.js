@@ -221,9 +221,7 @@ export default () => {
 
 
   // API
-
   onMounted(init)
-
   onUnmounted(uninit)
 
   return {

@@ -1,10 +1,5 @@
 <script>
 // Wrapper component for reducing boilerplate with transition
-import { includes } from 'lodash'
-
-const modes = ['out-in', 'simultaneous', 'in-out']
-const defaultMode = modes[0]
-
 export default {
   name: 'CustomTransition',
 
@@ -18,11 +13,15 @@ export default {
     mode: {
       type: String,
       required: false,
-      default: defaultMode,
+      default: 'out-in',
 
       // Accept empty string or any of the modes as input, in addition to empty values
       validator (value) {
-        return includes(modes, value)
+        return [
+          'out-in',
+          'simultaneous',
+          'in-out'
+        ].indexOf(value) > -1
       }
 
     },

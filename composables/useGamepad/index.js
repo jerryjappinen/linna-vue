@@ -135,7 +135,7 @@ export default () => {
 
 
 
-  // Hooks
+  // API
 
   const onGamepadConnected = () => {
     updateGamepadList()
