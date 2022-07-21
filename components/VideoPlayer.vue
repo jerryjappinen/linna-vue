@@ -1,96 +1,100 @@
-<script>
+<script setup>
 // FIXME: change this so user can pass multiple formats
-export default {
+import { computed } from 'vue'
 
-  props: {
-
-    src: {
-      type: [Array, String],
-      required: true
-    },
-
-    type: {
-      type: String,
-      default: 'mp4'
-    },
-
-    // SRC attributes
-    // mp4: {
-    //   type: String,
-    //   default: null
-    // },
-    // ogg: {
-    //   type: String,
-    //   default: null
-    // },
-
-
-
-    title: {
-      type: String,
-      default: null
-    },
-
-    poster: {
-      type: String,
-      default: null
-    },
-
-    mute: {},
-    controls: {},
-    autoplay: {},
-    loop: {},
-
-    // Support for lazy loading wrapper component
-    lazy: {}
-
+const props = defineProps({
+  src: {
+    type: [Array, String],
+    required: true
   },
 
-  computed: {
+  type: {
+    type: String,
+    default: 'mp4'
+  },
 
-    // srcs () {
-    //   if (this.src instanceof Array) {
-    //     return this.src
-    //   }
-    //   return [this.src]
-    // },
+  // SRC attributes
+  // mp4: {
+  //   type: String,
+  //   default: null
+  // },
+  // ogg: {
+  //   type: String,
+  //   default: null
+  // },
 
-    mimeType () {
-      return (this.type.indexOf('/' < 0) ? 'video/' : '') + this.type
-    },
+  title: {
+    type: String,
+    default: null
+  },
 
-    bindings () {
-      const bindings = {}
+  poster: {
+    type: String,
+    default: null
+  },
 
-      if (this.autoplay) {
-        bindings.autoplay = true
-        bindings.playsinline = true
-      }
+  mute: {
+    type: Boolean,
+    default: false
+  },
 
-      if (this.autoplay || this.mute) {
-        bindings.muted = true
-      }
+  controls: {
+    type: Boolean,
+    default: false
+  },
 
-      if (this.loop) {
-        bindings.loop = true
-      }
+  autoplay: {
+    type: Boolean,
+    default: false
+  },
 
-      if (this.controls) {
-        bindings.controls = true
-      }
+  loop: {
+    type: Boolean,
+    default: false
+  },
 
-      return bindings
-    },
-
-    sourceBinding () {
-      return {
-        [this.lazy ? 'data-src' : 'src']: this.src
-      }
-    }
-
+  // Support for lazy loading wrapper component
+  lazy: {
+    type: Boolean,
+    default: false
   }
 
-}
+})
+
+
+
+const mimeType = computed(() => {
+  return (props.type.indexOf('/' < 0) ? 'video/' : '') + props.type
+})
+
+const sourceBinding = computed(() => {
+  return {
+    [props.lazy ? 'data-src' : 'src']: props.src
+  }
+})
+
+const bind = computed(() => {
+  const bind = {}
+
+  if (props.autoplay) {
+    bind.autoplay = true
+    bind.playsinline = true
+  }
+
+  if (props.autoplay || props.mute) {
+    bind.muted = true
+  }
+
+  if (props.loop) {
+    bind.loop = true
+  }
+
+  if (props.controls) {
+    bind.controls = true
+  }
+
+  return bind
+})
 </script>
 
 <template>

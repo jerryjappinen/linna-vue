@@ -1,19 +1,10 @@
-<script>
+<script setup>
 import CustomTransition from './CustomTransition'
 
-export default {
-  name: 'Fade',
-
-  components: {
-    CustomTransition
-  },
-
-  props: [
-    'mode',
-    'appear'
-  ]
-
-}
+defineProps([
+  'mode',
+  'appear'
+])
 </script>
 
 <template>

@@ -1,104 +1,98 @@
-<script>
+<script setup>
+import { computed } from 'vue'
+
 const baseUrl = 'https://www.youtube.com/embed/'
 
-export default {
-
-  props: {
-
-    video: {
-      type: String,
-      default: null
-    },
-
-    playlist: {
-      type: Array,
-      default: null
-    },
-
-    mute: {
-      default: false
-    },
-
-    autoplay: {
-      default: false
-    },
-
-    dimensions: {
-      default: false
-    },
-
-    frame: {
-      default: true
-    }
-
+const props = defineProps({
+  video: {
+    type: String,
+    default: null
   },
 
-  computed: {
+  playlist: {
+    type: Array,
+    default: null
+  },
 
-    firstVideoId () {
+  mute: {
+    default: false
+  },
 
-      if (!this.video && this.playlist) {
-        return this.playlist[0]
-      }
+  autoplay: {
+    default: false
+  },
 
-      return this.video
-    },
+  dimensions: {
+    default: false
+  },
 
-    bindings () {
-      const bindings = {}
+  frame: {
+    default: true
+  }
+})
 
-      if (this.frame) {
-        bindings.allowfullscreen = true
-      }
 
-      return bindings
-    },
 
-    src () {
-      return baseUrl + this.firstVideoId + '?' + this.queryParameters.join('&')
-    },
-
-    queryParameters () {
-      const params = [
-        'rel=0',
-        'color=white',
-        'playsinline=1',
-        'disablekb=1',
-        'enablejsapi=1',
-        'modestbranding=1'
-      ]
-
-      if (this.mute) {
-        params.push('mute=1')
-      }
-
-      if (this.autoplay) {
-        params.push('autoplay=1')
-        params.push('loop=1')
-      }
-
-      if (this.playlist && this.playlist.length > 1) {
-        const playlist = this.video
-          ? this.playlist
-          : this.playlist.slice(1)
-
-        params.push('playlist=' + playlist.join(','))
-      }
-
-      if (this.frame) {
-        params.push('showinfo=1')
-        params.push('controls=1')
-      } else {
-        params.push('showinfo=0')
-        params.push('controls=0')
-      }
-
-      return params
-    }
-
+const firstVideoId = computed(() => {
+  if (!props.video && props.playlist) {
+    return props.playlist[0]
   }
 
-}
+  return props.video
+})
+
+const bindings = computed(() => {
+  const bindings = {}
+
+  if (props.frame) {
+    bindings.allowfullscreen = true
+  }
+
+  return bindings
+})
+
+const queryParameters = computed(() => {
+  const params = [
+    'rel=0',
+    'color=white',
+    'playsinline=1',
+    'disablekb=1',
+    'enablejsapi=1',
+    'modestbranding=1'
+  ]
+
+  if (props.mute) {
+    params.push('mute=1')
+  }
+
+  if (props.autoplay) {
+    params.push('autoplay=1')
+    params.push('loop=1')
+  }
+
+  if (props.playlist && props.playlist.length > 1) {
+    const playlist = props.video
+      ? props.playlist
+      : props.playlist.slice(1)
+
+    params.push('playlist=' + playlist.join(','))
+  }
+
+  if (props.frame) {
+    params.push('showinfo=1')
+    params.push('controls=1')
+  } else {
+    params.push('showinfo=0')
+    params.push('controls=0')
+  }
+
+  return params
+})
+
+const src = computed(() => {
+  return baseUrl + firstVideoId + '?' + queryParameters.join('&')
+})
+
 </script>
 
 <template>

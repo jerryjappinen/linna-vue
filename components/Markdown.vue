@@ -1,4 +1,6 @@
-<script>
+<script setup>
+import { computed } from 'vue'
+
 import MarkdownIt from 'markdown-it'
 
 // https://github.com/markdown-it/markdown-it
@@ -8,39 +10,31 @@ const markdownParser = new MarkdownIt({
   typographer: false
 })
 
-export default {
-
-  props: {
-
-    markdown: {
-      type: String,
-      required: true
-    },
-
-    inline: {
-      type: Boolean,
-      default: false
-    }
-
+const props = defineProps({
+  markdown: {
+    type: String,
+    required: true
   },
 
-  computed: {
-
-    bodyHtml () {
-      return this.body
-        ? this.inline
-          ? markdownParser.renderInline(this.body)
-          : markdownParser.render(this.body)
-        : null
-    },
-
-    component () {
-      return this.inline ? 'span' : 'div'
-    }
-
+  inline: {
+    type: Boolean,
+    default: false
   }
+})
 
-}
+
+
+const bodyHtml = computed(() => {
+  body
+    ? props.inline
+      ? markdownParser.renderInline(props.body)
+      : markdownParser.render(props.body)
+    : null
+})
+
+const component = computed(() => {
+  return props.inline ? 'span' : 'div'
+})
 </script>
 
 <template>

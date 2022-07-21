@@ -1,44 +1,43 @@
-<script>
+<script setup>
+import { computed } from 'vue'
+
 import { isAbsoluteUrl } from 'linna-util'
 
-export default {
-
-  props: {
-
-    file: {
-      type: String,
-      required: true
-    },
-
-    node: {
-      type: [Number, String],
-      required: false
-    }
-
+const props = defineProps({
+  file: {
+    type: String,
+    required: true
   },
 
-  computed: {
-
-    src () {
-      let url = ''
-
-      if (isAbsoluteUrl(this.file)) {
-        url = this.file
-      } else {
-        url = 'https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F' + this.file
-      }
-
-      if (this.node) {
-        url += '%2F%3Fnode-id%3D' + this.node
-      }
-
-      return url
-    }
-
+  node: {
+    type: [Number, String],
+    required: false
   }
-}
+})
+
+
+
+const src = computed(() => {
+  let url = ''
+
+  if (isAbsoluteUrl(props.file)) {
+    url = props.file
+  } else {
+    url = 'https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F' + props.file
+  }
+
+  if (props.node) {
+    url += '%2F%3Fnode-id%3D' + props.node
+  }
+
+  return url
+})
 </script>
 
 <template>
-  <iframe :src="src" class="c-figma-canvas" allowfullscreen />
+  <iframe
+    :src="src"
+    class="c-figma-canvas"
+    allowfullscreen
+  />
 </template>

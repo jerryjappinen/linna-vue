@@ -147,7 +147,7 @@ export default (persistData, persistKeyInput, loadManually) => {
 
 
   // Props
-  const persistLoaded = ref(0)
+  const persistLoaded = ref(false)
 
   // Watchers
   if (windowExists() && persistKey) {

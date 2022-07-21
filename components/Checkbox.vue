@@ -1,29 +1,19 @@
-<script>
-import Icon from './Icon'
-
+<script setup>
 // This is a read-only component that visualizes state
 // Wrap this component in a Toggle to deliver complete form element behavior
-export default {
+defineProps({
 
-  components: {
-    Icon
+  value: {
+    type: undefined,
+    default: false
   },
 
-  props: {
-
-    value: {
-      type: undefined,
-      default: false
-    },
-
-    disabled: {
-      type: Boolean,
-      default: false
-    }
-
+  disabled: {
+    type: Boolean,
+    default: false
   }
 
-}
+})
 </script>
 
 <template>
@@ -44,6 +34,8 @@ export default {
 
 <style lang="scss">
 
+$c-checkbox-border-width: 2px;
+
 .c-checkbox,
 .c-checkbox-icon {
   @include relative;
@@ -58,8 +50,8 @@ export default {
 
   width: 1em;
   height: 1em;
-  border-width: 2px;
-  padding: $pad-tight-horizontal - (2 * 2px);
+  border-width: $c-checkbox-border-width;
+  padding: calc($pad-tight-horizontal - (2 * $c-checkbox-border-width));
 
   // Default for enabled, off state
   color: $white;

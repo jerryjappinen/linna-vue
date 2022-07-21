@@ -1,36 +1,23 @@
-<script>
+<script setup>
+import { computed } from 'vue'
+
 import GooglePlayBadge from './GooglePlayBadge'
 import ExternalLink from './ExternalLink'
 
-export default {
+const props = defineProps({
+  light: {},
 
-  components: {
-    GooglePlayBadge,
-    ExternalLink
-  },
-
-  props: {
-
-    packageName: {
-      type: [Number, String],
-      required: true
-    },
-
-    light: {}
-
-  },
-
-  computed: {
-
-    href () {
-      return this.packageName
-        ? 'http://play.google.com/store/apps/details?id=' + this.packageName
-        : null
-    }
-
+  package: {
+    type: [Number, String],
+    required: true
   }
+})
 
-}
+const href = computed(() => {
+  return props.package
+    ? 'http://play.google.com/store/apps/details?id=' + props.package
+    : null
+})
 </script>
 
 <template>

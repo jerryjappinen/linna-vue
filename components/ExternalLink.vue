@@ -1,52 +1,46 @@
-<script>
-export default {
+<script setup>
+import { computed } from 'vue'
 
-  props: {
+const props = defineProps({
 
-    href: {
-      type: String,
-      default: null
-    },
-
-    here: {
-      type: Boolean,
-      default: false
-    },
-
-    refer: {
-      type: Boolean,
-      default: false
-    }
-
+  href: {
+    type: String,
+    default: null
   },
 
-  computed: {
+  here: {
+    type: Boolean,
+    default: false
+  },
 
-    bind () {
-      const attributes = {
-        rel: 'nofollow noopener'
-      }
-
-      if (!this.here) {
-        attributes.target = '_blank'
-      }
-
-      if (!this.refer) {
-        attributes.rel += ' noreferrer'
-      }
-
-      return attributes
-    }
-
+  refer: {
+    type: Boolean,
+    default: false
   }
 
-}
+})
+
+const bind = computed(() => {
+  const attributes = {
+    rel: 'nofollow noopener'
+  }
+
+  if (!props.here) {
+    attributes.target = '_blank'
+  }
+
+  if (!props.refer) {
+    attributes.rel += ' noreferrer'
+  }
+
+  return attributes
+})
 </script>
 
 <template>
   <a
-    class="c-external-link"
     :href="href"
+    class="c-external-link"
     v-bind="bind"
   ><slot /></a>
 </template>

@@ -1,62 +1,59 @@
-<script>
+<script setup>
+import { computed } from 'vue'
+
 import { replaceAll } from 'linna-util'
 
-export default {
+const props = defineProps({
 
-  props: {
-
-    to: {
-      type: String,
-      required: true
-    },
-
-    external: {
-      default: false
-    },
-
-    subject: {
-      type: String,
-      required: false
-    },
-
-    body: {
-      type: String,
-      required: false
-    }
-
+  to: {
+    type: String,
+    required: true
   },
 
-  computed: {
+  external: {
+    default: false
+  },
 
-    href () {
-      const params = []
+  subject: {
+    type: String,
+    required: false
+  },
 
-      if (this.subject) {
-        params.push('subject=' + this.subject)
-      }
-
-      if (this.body) {
-        params.push('body=' + replaceAll(this.body, '\n', '%0D%0A').trim())
-      }
-
-      return 'mailto:' + this.to + (params.length ? '?' + params.join('&') : '')
-    },
-
-    bindings () {
-
-      if (this.external) {
-        return {
-          rel: 'nofollow noopener',
-          target: '_blank'
-        }
-      }
-
-      return null
-    }
-
+  body: {
+    type: String,
+    required: false
   }
 
-}
+})
+
+
+
+const href = computed(() => {
+  const params = []
+
+  if (props.subject) {
+    params.push('subject=' + props.subject)
+  }
+
+  if (props.body) {
+    params.push('body=' + replaceAll(props.body, '\n', '%0D%0A').trim())
+  }
+
+  return 'mailto:' + props.to + (params.length ? '?' + params.join('&') : '')
+})
+
+
+
+const bindings = computed(() => {
+  if (props.external) {
+    return {
+      rel: 'nofollow noopener',
+      target: '_blank'
+    }
+  }
+
+  return null
+})
 </script>
 
 <template>

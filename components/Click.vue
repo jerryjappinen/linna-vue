@@ -1,60 +1,47 @@
-<script>
-export default {
+<script setup>
+import { ref, computed } from 'vue'
 
-  props: {
-    disabled: {},
+const emit = defineEmits(['click'])
 
-    block: {
-      default: false
-    },
+const props = defineProps({
+  disabled: {},
 
-    button: {
-      default: false
-    }
-
+  block: {
+    type: Boolean,
+    default: false
   },
 
-  data () {
-    return {
-      mouseDown: false
-    }
-  },
-
-  computed: {
-
-    component () {
-
-      if (this.button) {
-        return 'button'
-      }
-
-      if (this.block) {
-        return 'div'
-      }
-
-      return 'span'
-    }
-
-  },
-
-  methods: {
-
-    onMouseDown () {
-      this.mouseDown = true
-    },
-
-    onMouseUp () {
-      this.mouseDown = false
-    },
-
-    onClick (event) {
-      if (!this.disabled) {
-        this.$emit('click', event)
-      }
-    }
-
+  button: {
+    type: Boolean,
+    default: false
   }
 
+})
+
+const mouseDown = ref(false)
+
+const component = computed(() => {
+  return props.button
+    ? 'button'
+    : props.block
+      ? 'div'
+      : 'span'
+})
+
+
+
+const onMouseDown = () => {
+  mouseDown.value = true
+}
+
+const onMouseUp = () => {
+  mouseDown.value = false
+}
+
+const onClick = (event) => {
+  if (!props.disabled) {
+    emit('click', event)
+  }
 }
 </script>
 

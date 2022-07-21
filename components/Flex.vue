@@ -1,26 +1,20 @@
-<script>
-export default {
+<script setup>
+defineProps({
+  center: {
+    type: Boolean,
+    default: false
+  },
 
-  props: {
+  inline: {
+    type: Boolean,
+    default: false
+  },
 
-    center: {
-      type: Boolean,
-      default: false
-    },
-
-    inline: {
-      type: Boolean,
-      default: false
-    },
-
-    justify: {
-      type: Boolean,
-      default: false
-    }
-
+  justify: {
+    type: Boolean,
+    default: false
   }
-
-}
+})
 </script>
 
 <template>

@@ -1,38 +1,25 @@
-<script>
+<script setup>
+import { computed } from 'vue'
+
 import AppStoreBadge from './AppStoreBadge'
 import ExternalLink from './ExternalLink'
 
-export default {
+const props = defineProps({
+  refer: {},
+  here: {},
+  light: {},
 
-  components: {
-    AppStoreBadge,
-    ExternalLink
-  },
-
-  props: {
-
-    appId: {
-      type: [Number, String],
-      required: true
-    },
-
-    refer: {},
-    here: {},
-    light: {}
-
-  },
-
-  computed: {
-
-    href () {
-      return this.appId
-        ? `https://itunes.apple.com/us/app/ab-classic/${this.appId}?mt=8`
-        : null
-    }
-
+  appId: {
+    type: [Number, String],
+    required: true
   }
+})
 
-}
+const href = computed(() => {
+  return props.appId
+    ? `https://itunes.apple.com/us/app/ab-classic/${props.appId}?mt=8`
+    : null
+})
 </script>
 
 <template>

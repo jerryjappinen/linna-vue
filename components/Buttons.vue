@@ -1,21 +1,17 @@
-<script>
-export default {
+<script setup>
+defineProps({
 
-  props: {
+  fill: {
+    type: Boolean,
+    default: false
+  },
 
-    fill: {
-      type: Boolean,
-      default: false
-    },
-
-    center: {
-      type: Boolean,
-      default: false
-    }
-
+  center: {
+    type: Boolean,
+    default: false
   }
 
-}
+})
 </script>
 
 <template>

@@ -1,7 +1,12 @@
 <script setup>
 import ExternalLink from './ExternalLink'
+import ProductHuntBadge from './ProductHuntBadge'
 
 const props = defineProps({
+  postId,
+  title,
+  light,
+
   postSlug: {
     type: String,
     required: true
@@ -18,6 +23,12 @@ const href = computed(() => {
     :href="href"
     class="c-product-hunt-link"
   >
-    <slot />
+    <slot>
+      <ProductHuntBadge
+        :post-id="postId"
+        :title="title"
+        :light="light"
+      />
+    </slot>
   </ExternalLink>
 </template>
