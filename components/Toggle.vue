@@ -1,47 +1,30 @@
-<script>
+<script setup>
 // Wrapper component to be used as a hit area. Using this makes it easier to style and control a hit area separately from the control visualisation inside it, for example in table rows
-
-// This input is used by passing the value attribute with `.sync` modifier
-// Internally this translates to two-way use of `value` prop
-// State of the input is kept track of internally, and the result is $emitted to parent scope
-// http://vuejs.org/guide/components.html#Form-Input-Components-using-Custom-Events
-
 import Set from './Set'
 
-export default {
-  emits: ['update:modelValue'],
+import useModelValue from '../composables/useModelValue'
 
-  components: {
-    Set
-  },
+const props = defineProps({
+  disabled: {},
+  block: {},
+  button: {},
 
-  props: {
-
-    modelValue: {
-      type: Boolean,
-      required: true
-    },
-
-    // Passed through
-    disabled: {},
-    block: {},
-    button: {}
-  },
-
-  computed: {
-
-    value: {
-      get () {
-        return this.modelValue
-      },
-      set (value) {
-        this.$emit('update:modelValue', value)
-      }
-    }
-
+  // Have to define props here
+  // Type can change, but name is predefined by Vue
+  // Ideally I'd just pass the options to composable, which would define the prop
+  modelValue: {
+    type: Boolean,
+    required: true
   }
+})
 
-}
+// This event name is set in Vue
+// Why do I have to define it? Twice?
+const emit = defineEmits('update:modelValue')
+
+// I only saved the computed definition now
+// A little less duplication but doesn't seem ideal
+const value = useModelValue(props.modelValue)
 </script>
 
 <template>

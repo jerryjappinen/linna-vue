@@ -1,5 +1,8 @@
-<script>
+<script setup>
+import { computed } from 'vue'
+
 const props = defineProps({
+
   postId: {
     type: [Number, String],
     required: true
@@ -14,9 +17,10 @@ const props = defineProps({
     type: Boolean,
     default: false
   }
+
 })
 
-const href = computed(() => {
+const src = computed(() => {
   return 'https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=' + props.postId + '&theme=' + (props.light ? 'light' : 'dark')
 })
 </script>

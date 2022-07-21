@@ -1,31 +1,17 @@
-<script>
-export default {
+<script setup>
+defineProps({
 
-  props: {
-
-    rhythm: {
-      default: false
-    },
-
-    push: {
-      default: false
-    }
-
+  rhythm: {
+    type: Boolean,
+    default: false
   },
 
-  computed: {
-
-    hasLeft () {
-      return !!this.$scopedSlots.left
-    },
-
-    hasRight () {
-      return !!this.$scopedSlots.right
-    }
-
+  push: {
+    type: Boolean,
+    default: false
   }
 
-}
+})
 </script>
 
 <template>
@@ -41,7 +27,10 @@ export default {
       or:
       <img #left />
     -->
-    <div v-if="hasLeft" class="c-title-area-left">
+    <div
+      v-if="$slots.left && $slots.left.length"
+      class="c-title-area-left"
+    >
       <slot name="left" />
     </div>
 
@@ -50,7 +39,10 @@ export default {
     </div>
 
     <!-- <img #right /> -->
-    <div v-if="hasRight" class="c-title-area-right">
+    <div
+      v-if="$slots.right && $slots.right.length"
+      class="c-title-area-right"
+    >
       <slot name="right" />
     </div>
 

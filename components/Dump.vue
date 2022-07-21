@@ -1,24 +1,20 @@
-<script>
+<script setup>
 import { isNumber, isString } from 'lodash-es'
 
-export default {
+defineProps({
+  data: {
+    default: null
+  }
+})
 
-  props: {
-    data: {
-      default: null
-    }
-  },
+const content = computed(() => {
 
-  computed: {
-    content () {
-      if (isNumber(this.data) || isString(this.data)) {
-        return this.data
-      }
-      return JSON.stringify(this.data, null, 2)
-    }
+  if (isNumber(props.data) || isString(props.data)) {
+    return props.data
   }
 
-}
+  return JSON.stringify(props.data, null, 2)
+})
 </script>
 
 <template>

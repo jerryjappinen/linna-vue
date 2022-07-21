@@ -1,12 +1,10 @@
-<script>
+<script setup>
 // This is a read-only component that visualizes state
 // Wrap this component in a control component to deliver complete form element behavior
-export default {
-  props: {
-    value: {},
-    disabled: {}
-  }
-}
+defineProps({
+  value: {},
+  disabled: {}
+})
 </script>
 
 <template>

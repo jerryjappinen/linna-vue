@@ -1,25 +1,14 @@
-<script>
+<script setup>
 import InstagramPost from './InstagramPost'
 
-export default {
-  name: 'InstagramFeed',
+defineProps({
+  hd: {},
 
-  components: {
-    InstagramPost
-  },
-
-  props: {
-
-    posts: {
-      type: Array,
-      required: true
-    },
-
-    hd: {}
-
+  posts: {
+    type: Array,
+    required: true
   }
-
-}
+})
 </script>
 
 <template>

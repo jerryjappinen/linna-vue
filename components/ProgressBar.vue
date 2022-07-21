@@ -1,47 +1,41 @@
-<script>
-export default {
+<script setup>
+import { computed } from 'vue'
 
-  props: {
+const props = defineProps({
 
-    min: {
-      type: Number,
-      default: 0
-    },
-
-    max: {
-      type: Number,
-      default: 100
-    },
-
-    value: {
-      type: Number,
-      default: 0
-    },
-
-    transition: {
-      type: Boolean,
-      default: true
-    }
-
+  value: {
+    type: Number,
+    default: 0
   },
 
-  computed: {
+  min: {
+    type: Number,
+    default: 0
+  },
 
-    float () {
-      return (this.value - this.min) / Math.abs(this.max - this.min)
-    },
+  max: {
+    type: Number,
+    default: 100
+  },
 
-    normalizedFloat () {
-      return Math.max(0, Math.min(1, this.float))
-    },
-
-    percentage () {
-      return 100 * this.normalizedFloat
-    }
-
+  transition: {
+    type: Boolean,
+    default: true
   }
 
-}
+})
+
+const float = computed(() => {
+  return (props.value - props.min) / Math.abs(props.max - props.min)
+})
+
+const normalizedFloat = computed(() => {
+  return Math.max(0, Math.min(1, float))
+})
+
+const percentage = computed(() => {
+  return 100 * normalizedFloat
+})
 </script>
 
 <template>

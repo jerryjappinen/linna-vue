@@ -1,43 +1,37 @@
-<script>
-export default {
+<script setup>
+import { computed } from 'vue'
 
-  props: {
+const props = defineProps({
 
-    // Pixels
-    width: {
-      type: Number,
-      default: 48
-    },
-
-    // In pixels, when displayed at 1:1 width
-    strokeWidth: {
-      type: Number,
-      default: 4
-    }
-
+  // Pixels
+  width: {
+    type: Number,
+    default: 48
   },
 
-  computed: {
-
-    viewBox () {
-      return '0 0 ' + this.width + ' ' + this.width
-    },
-
-    strokeWidthValue () {
-      return this.strokeWidth + 'px'
-    },
-
-    radius () {
-      return ((this.width / 2) - this.strokeWidth) + 'px'
-    },
-
-    circlePosition () {
-      return (this.width / 2) + 'px'
-    }
-
+  // In pixels, when displayed at 1:1 width
+  strokeWidth: {
+    type: Number,
+    default: 4
   }
 
-}
+})
+
+const viewBox = computed(() => {
+  return '0 0 ' + props.width + ' ' + props.width
+})
+
+const strokeWidthValue = computed(() => {
+  return props.strokeWidth + 'px'
+})
+
+const radius = computed(() => {
+  return ((props.width / 2) - props.strokeWidth) + 'px'
+})
+
+const circlePosition = computed(() => {
+  return (props.width / 2) + 'px'
+})
 </script>
 
 <template>

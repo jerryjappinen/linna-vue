@@ -1,39 +1,33 @@
-<script>
-export default {
+<script setup>
+import { computed } from 'vue'
 
-  props: {
+const props = defineProps({
 
-    tel: {
-      type: String,
-      required: false
-    },
-
-    sms: {
-      type: String,
-      required: false
-    },
-
-    body: {
-      type: String,
-      required: false
-    }
-
+  tel: {
+    type: String,
+    required: false
   },
 
-  computed: {
+  sms: {
+    type: String,
+    required: false
+  },
 
-    href () {
-      return (this.sms || this.body ? 'sms' : 'tel') +
-        ':' +
-        this.tel +
-        (this.body
-          ? '?' + this.body
-          : '')
-    }
-
+  body: {
+    type: String,
+    required: false
   }
 
-}
+})
+
+const href = computed(() => {
+  return (props.sms || props.body ? 'sms' : 'tel') +
+    ':' +
+    props.tel +
+    (props.body
+      ? '?' + props.body
+      : '')
+})
 </script>
 
 <template>

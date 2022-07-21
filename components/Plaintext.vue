@@ -1,42 +1,25 @@
-<script>
+<script setup>
 import { toPlainText } from 'linna-util'
 
-export default {
-  name: 'Plaintext',
+defineProps({
 
-  props: {
-
-    body: {
-      type: String,
-      required: true
-    },
-
-    block: {
-      default: false
-    }
-
+  body: {
+    type: String,
+    required: true
   },
 
-  computed: {
-
-    component () {
-      return this.block ? 'div' : 'span'
-    },
-
-    content () {
-      return this.body ? toPlainText(this.body) : ''
-    }
-
+  block: {
+    default: false
   }
 
-}
+})
 </script>
 
 <template>
   <component
-    :is="component"
+    :is="block ? 'div' : 'span'"
     class="c-plaintext"
   >
-    {{ content }}
+    {{ body ? toPlainText(body) : '' }}
   </component>
 </template>

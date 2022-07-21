@@ -1,75 +1,66 @@
-<script>
+<script setup>
+import { ref, computed } from 'vue'
+
 import ExternalLink from './ExternalLink'
 import Bitmap from './Bitmap'
 import VideoPlayer from './VideoPlayer'
 
-export default {
+const props = defineProps({
 
-  components: {
-    ExternalLink,
-    Bitmap,
-    VideoPlayer
+  post: {
+    type: Object,
+    required: true
   },
 
-  props: {
-
-    post: {
-      type: Object,
-      required: true
-    },
-
-    hd: {
-      default: false
-    }
-
-  },
-
-  computed: {
-
-    isPortrait () {
-      return (this.post.images.standard_resolution.width < this.post.images.standard_resolution.height)
-    },
-
-    isVideo () {
-      return this.post.type === 'video' && this.post.videos
-    },
-
-    imageSrc () {
-      return this.hd
-        ? this.post.images.low_resolution.url
-        : this.post.images.standard_resolution.url
-    },
-
-    videoSrc () {
-      return !this.isVideo
-        ? null
-        : this.hd
-          ? this.post.videos.low_bandwidth.url
-          : this.post.videos.standard_resolution.url
-    },
-
-    title () {
-      return this.post.caption && this.post.caption.text
-        ? this.post.caption.text
-        : this.post.location && this.post.location.name
-          ? this.post.location.name
-          : this.post.user.full_name
-    }
-
-  },
-
-  methods: {
-
-    onVideoClick () {
-      if (this.$refs.video.paused) {
-        this.$refs.video.play()
-      } else {
-        this.$refs.video.pause()
-      }
-    }
-
+  hd: {
+    type: Boolean,
+    default: false
   }
 
+})
+
+
+
+const videoElement = ref(null)
+
+const isPortrait = computed(() => {
+  return (props.post.images.standard_resolution.width < props.post.images.standard_resolution.height)
+})
+
+const isVideo = computed(() => {
+  return props.post.type === 'video' && props.post.videos
+})
+
+const imageSrc = computed(() => {
+  return props.hd
+    ? props.post.images.low_resolution.url
+    : props.post.images.standard_resolution.url
+})
+
+const videoSrc = computed(() => {
+  return !isVideo
+    ? null
+    : props.hd
+      ? props.post.videos.low_bandwidth.url
+      : props.post.videos.standard_resolution.url
+})
+
+const title = computed(() => {
+  return props.post.caption && props.post.caption.text
+    ? props.post.caption.text
+    : props.post.location && props.post.location.name
+      ? props.post.location.name
+      : props.post.user.full_name
+})
+
+
+
+const onVideoClick = () => {
+  if (videoElement.value && videoElement.value.video.paused) {
+    videoElement.value.video.play()
+  } else {
+    videoElement.value.video.pause()
+  }
 }
 </script>
 
@@ -86,7 +77,7 @@ export default {
     <!-- Video -->
     <VideoPlayer
       v-if="isVideo"
-      ref="video"
+      ref="videoElement"
       class="c-instagram-post-video"
       :src="videoSrc"
       :poster="imageSrc"
