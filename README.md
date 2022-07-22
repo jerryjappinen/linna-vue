@@ -3,7 +3,7 @@
 Install dependencies:
 
 ```sh
-npm i lodash-es date-fns linna-sass linna-util linna-vue
+npm i linna-vue linna-sass linna-util lodash-es date-fns
 ```
 
 Some components might depend on modules from other packages:
