@@ -9,6 +9,9 @@
     "composables/*",
     "mixins/*",
     "nuxt/*",
+    "nuxt.config/*",
+    "components.js",
+    "composables.js",
     "mixins.js",
     "index.js",
     "dist/*"
