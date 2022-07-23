@@ -4,15 +4,11 @@
   "description": "Component library for Vue.",
   "private": false,
   "type": "module",
-  "main": "dist/library.js",
-  "module": "dist/library.mjs",
   "files": [
     "components/*",
     "composables/*",
     "mixins/*",
     "nuxt/*",
-    "composables.js",
-    "components.js",
     "mixins.js",
     "index.js",
     "dist/*"
