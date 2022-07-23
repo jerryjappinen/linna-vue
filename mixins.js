@@ -1,5 +1,1 @@
-import persist from './composables/usePersist'
-
-export default {
-  persist
-}
+export { default as persist } from './mixins/persist'
