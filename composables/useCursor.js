@@ -1,9 +1,15 @@
 // https://vuejs.org/guide/reusability/composables.html#mouse-tracker-example
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 
 export default () => {
   const x = ref(0)
   const y = ref(0)
+
+  const xy = computed(() => {
+    return [x, y]
+  })
+
+
 
   const update = ({ clientX, clientY }) => {
     x.value = clientX
@@ -27,6 +33,7 @@ export default () => {
     init,
     uninit,
     x,
-    y
+    y,
+    xy
   }
 }
