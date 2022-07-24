@@ -7,13 +7,11 @@
   "files": [
     "components/*",
     "composables/*",
-    "mixins/*",
-    "nuxt/*",
     "nuxt.config/*",
     "components.js",
     "composables.js",
-    "mixins.js",
     "index.js",
+    "nuxt.js",
     "dist/*"
   ],
   "license": "MIT",

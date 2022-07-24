@@ -43,6 +43,16 @@ const props = defineProps({
   //   default: false
   // },
 
+  width: {
+    type: Number,
+    default: null
+  },
+
+  thickness: {
+    type: Number,
+    default: 4
+  },
+
   vertical: {
     type: Boolean,
     default: false
@@ -61,6 +71,10 @@ const props = defineProps({
 })
 
 const emit = defineEmits([
+  'change',
+  'drag',
+  'drag-start',
+  'drag-end',
   'update:modelValue'
 ])
 
@@ -103,11 +117,14 @@ const options = computed(() => {
     sticky: false,
     flip: false,
     flipTooltip: false,
-    circleOffset: typeof circular === 'number' ? circular : undefined,
+
+    // User can pass offset in the circular parameter
+    circleOffset: circular || 0,
 
     // Style
-    height: 4,
-    handleScale: 2,
+    width: circular ? (width || 80) : width, // default to absolute width with circular style
+    height: props.thickness,
+    handleScale: null, // magnification on hover
     color: '#000',
     trackColor: '#ccc',
     tooltipColor: '#000',
@@ -119,16 +136,24 @@ const options = computed(() => {
 
 
 
-const onChange = () => {}
+// Event handlers
 
-const onDrag = () => {}
+const onChange = () => {
+  emit('change')
+}
+
+const onDrag = () => {
+  emit('drag')
+}
 
 const onDragStart = () => {
   mouseDown.value = true
+  emit('drag-start')
 }
 
 const onDragEnd = () => {
   mouseDown.value = false
+  emit('drag-end')
 }
 </script>
 

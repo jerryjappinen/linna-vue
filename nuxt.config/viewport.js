@@ -1,5 +1,5 @@
 // Behavioral base meta tags
-// FIXME: add adjustable viewport settings
+// FIXME: make viewport settings adjustable
 export default () => {
   return {
     meta: {

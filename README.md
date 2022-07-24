@@ -1,5 +1,7 @@
 # linna-vue
 
+See [components/](./components/)
+
 Install dependencies:
 
 ```sh
@@ -27,15 +29,32 @@ export default {
 `components/` are NOT built during install. You must transpile them yourself in your project.
 
 
-### Nuxt module
 
-Install as a Nuxt module to auto-import components.
+### Composables
+
+See [composables/](./composables/)
+
+
+
+### nuxt.config
+
+See [nuxt.config/](./nuxt.config/)
+
+
+
+#### Nuxt module
+
+Install as a Nuxt module to auto-import components and composables:
 
 ```js
 export default {
-  modules: ['linna-vue']
+  modules: [
+    'linna-vue/nuxt'
+  ]
 }
 ```
+
+Or use the `nuxt.config` helper `linna`, which does the same thing.
 
 ### Todo
 
