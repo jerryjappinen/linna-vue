@@ -1,11 +1,8 @@
 <script setup>
-import { isNumber } from 'lodash-es'
-import { ref, computed } from 'vue'
+import { ref, computed, unref } from 'vue'
 
-// https://nightcatsama.github.io/vue-slider-component/#/
-import VueSlider from 'vue-slider-component/dist-css/vue-slider-component.umd.min.js'
-import 'vue-slider-component/dist-css/vue-slider-component.css'
-import 'vue-slider-component/lib/theme/default.scss'
+// https://www.npmjs.com/package/vue3-slider
+import Vue3Slider from "vue3-slider"
 
 const props = defineProps({
 
@@ -14,49 +11,51 @@ const props = defineProps({
     required: true
   },
 
-  disabled: {
-    type: Boolean,
-    default: false
+  min: {
+    type: Number,
+    default: 0
   },
 
-  lazy: {
-    type: Boolean,
-    default: false
+  max: {
+    type: Number,
+    default: 100
   },
 
-  inverted: {
-    type: Boolean,
-    default: false
+  step: {
+    type: Number,
+    default: 1
   },
+
+  tooltip: {
+    type: [Boolean, String],
+    default: true
+  },
+
+  // Callback that formats the visible text in tooltip
+  // Receives the value as a parameter
+  formatTooltip: {
+    type: Function,
+    default: null
+  },
+
+  // flipTooltip: {
+  //   type: Boolean,
+  //   default: false
+  // },
 
   vertical: {
     type: Boolean,
     default: false
   },
 
-  data: {
-    type: [Array, Object],
-    default: null
+  circular: {
+    type: Boolean,
+    default: false
   },
 
-  min: {
-    type: Number,
-    default: null
-  },
-
-  max: {
-    type: Number,
-    default: null
-  },
-
-  interval: {
-    type: Number,
-    default: null
-  },
-
-  tooltip: {
-    type: [Boolean, String],
-    default: true
+  disabled: {
+    type: Boolean,
+    default: false
   }
 
 })
@@ -70,66 +69,49 @@ const emit = defineEmits([
 const mouseDown = ref(false)
 
 const value = computed({
-
   get () {
     return props.modelValue.value
   },
-
   set (value) {
     emit('update:modelValue', value)
   }
-
 })
 
+// https://www.npmjs.com/package/vue3-slider#user-content-props
 const options = computed(() => {
+  const tooltip = unref(props.tooltip)
+  const circular = unref(props.circular)
+  const orientation = unref(props.vertical)
+    ? 'vertical'
+    : circular || circular === 0
+      ? 'circular'
+      : 'horizontal'
+
   const opts = {
-    dotSize: 24,
+    disabled: props.disabled,
+    max: props.max,
+    min: props.min,
+    limit: undefined,
+    step: props.step,
+    tooltip: !!tooltip,
+    tooltipText: typeof tooltip === 'string' ? tooltip : undefined,
+    formatTooltip: props.formatTooltip,
+    orientation,
+
+    alwaysShowHandle: true,
+    repeat: false,
+    sticky: false,
+    flip: false,
+    flipTooltip: false,
+    circleOffset: typeof circular === 'number' ? circular : undefined,
+
+    // Style
     height: 4,
-    duration: 0.15,
-    dragOnClick: true,
-    adsorb: true,
-    tooltip: props.tooltip ? 'active' : 'none',
-    tooltipPlacement: props.tooltip === true ? 'top' : props.tooltip,
-    enableCross: false
-
-    // dataLabel: 'label',
-    // dataValue: 'value'
-  }
-
-  if (props.lazy) {
-    opts.lazy = true
-  }
-
-  if (props.disabled) {
-    opts.disabled = true
-  }
-
-  if (props.data) {
-    opts.data = props.data
-  }
-
-  if (isNumber(props.min)) {
-    opts.min = props.min
-  }
-
-  if (isNumber(props.min)) {
-    opts.min = props.min
-  }
-
-  if (isNumber(props.max)) {
-    opts.max = props.max
-  }
-
-  if (props.vertical) {
-    opts.direction = 'ttb'
-  }
-
-  if (props.inverted) {
-    if (props.vertical) {
-      opts.direction = 'btt'
-    } else {
-      opts.direction = 'rtl'
-    }
+    handleScale: 2,
+    color: '#000',
+    trackColor: '#ccc',
+    tooltipColor: '#000',
+    tooltipTextColor: '#fff',
   }
 
   return opts
@@ -137,29 +119,33 @@ const options = computed(() => {
 
 
 
-const onMouseDown = () => {
+const onChange = () => {}
+
+const onDrag = () => {}
+
+const onDragStart = () => {
   mouseDown.value = true
 }
 
-const onMouseUp = () => {
+const onDragEnd = () => {
   mouseDown.value = false
 }
 </script>
 
 <template>
-  <VueSlider
-    class="c-slider control"
+  <Vue3Slider
     :class="{
       'control-disabled': disabled,
       'control-enabled': !disabled,
       'control-mouse-down': mouseDown
     }"
-    v-bind="options"
+    class="c-slider control"
+    @change="onChange"
+    @drag-start="onDragStart"
+    @drag-end="onDragEnd"
+    @dragging="onDrag"
     v-model="value"
-    v-on="{
-      mouseup: onMouseUp,
-      mousedown: onMouseDown
-    }"
+    v-bind="options"
   />
 </template>
 

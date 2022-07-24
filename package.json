@@ -38,10 +38,13 @@
     "type": "git",
     "url": "https://github.com/jerryjappinen/linna-vue.git"
   },
+  "dependencies": {
+    "vue3-slider": "^1.8.0"
+  },
   "peerDependencies": {
-    "lodash-es": "^4.17.21",
     "linna-sass": "^1.0.1",
     "linna-util": "^6.2.0",
+    "lodash-es": "^4.17.21",
     "markdown-it": "^13.0.1",
     "vue": "^3.2.37",
     "vue-slider-component": "^4.1.0-beta.1"
