@@ -1,3 +1,5 @@
+import { compact, flatten } from 'lodash-es'
+
 // Define extra routes to generate
 // https://v3.nuxtjs.org/guide/deploy/static-hosting#client-side-only-rendering
 // https://nitro.unjs.io/config/#prerender
@@ -18,14 +20,13 @@ export default ({
     modules: [
       ['@nuxtjs/sitemap', {
         hostname: baseUrl,
-        exclude,
-        routes
+        exclude: compact(flatten([exclude]))
       }]
     ],
 
     nitro: {
       prerender: {
-        routes
+        routes: compact(flatten([routes]))
       }
     }
   }
