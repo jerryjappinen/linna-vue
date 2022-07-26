@@ -40,12 +40,28 @@
     "vue3-slider": "^1.8.0"
   },
   "peerDependencies": {
+    "@pinia/nuxt": "^0.3.1",
     "linna-sass": "^1.0.1",
     "linna-util": "^6.2.0",
     "lodash-es": "^4.17.21",
     "markdown-it": "^13.0.1",
-    "vue": "^3.2.37",
-    "vue-slider-component": "^4.1.0-beta.1"
+    "pinia": "^2.0.17",
+    "platform-detect": "^3.0.1",
+    "vue": "^3.2.37"
+  },
+  "peerDependenciesMeta": {
+    "markdown-it": {
+      "optional": true
+    },
+    "@pinia/nuxt": {
+      "optional": true
+    },
+    "pinia": {
+      "optional": true
+    },
+    "platform-detect": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "nuxt": "^3.0.0-rc.6",

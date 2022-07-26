@@ -168,9 +168,9 @@ export default (persistData, persistKeyInput, loadManually) => {
 
   // Expose managed state as return value
   return {
-    persistData,
-    persistLoaded,
-    persistKey,
+    data: persistData,
+    isLoaded: persistLoaded,
+    key: persistKey,
     clearPersistData
   }
 }
