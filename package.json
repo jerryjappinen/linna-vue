@@ -46,7 +46,6 @@
     "lodash-es": "^4.17.21",
     "markdown-it": "^13.0.1",
     "nuxt": "^3.0.0-rc.6",
-    "pinia": "^2.0.17",
     "platform-detect": "^3.0.1",
     "vue": "^3.2.37"
   },
@@ -60,9 +59,6 @@
     "nuxt": {
       "optional": true
     },
-    "pinia": {
-      "optional": true
-    },
     "platform-detect": {
       "optional": true
     },
@@ -71,6 +67,7 @@
     }
   },
   "devDependencies": {
+    "pinia": "^2.0.17",
     "sass": "^1.54.0",
     "sass-loader": "^13.0.2"
   }
