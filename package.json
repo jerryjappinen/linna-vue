@@ -8,10 +8,12 @@
     "components/*",
     "composables/*",
     "nuxt.config/*",
+    "stores/*",
     "components.js",
     "composables.js",
     "index.js",
     "nuxt.js",
+    "stores.js",
     "dist/*"
   ],
   "license": "MIT",
