@@ -45,15 +45,19 @@
     "linna-util": "^6.2.0",
     "lodash-es": "^4.17.21",
     "markdown-it": "^13.0.1",
+    "nuxt": "^3.0.0-rc.6",
     "pinia": "^2.0.17",
     "platform-detect": "^3.0.1",
     "vue": "^3.2.37"
   },
   "peerDependenciesMeta": {
+    "@pinia/nuxt": {
+      "optional": true
+    },
     "markdown-it": {
       "optional": true
     },
-    "@pinia/nuxt": {
+    "nuxt": {
       "optional": true
     },
     "pinia": {
@@ -64,7 +68,6 @@
     }
   },
   "devDependencies": {
-    "nuxt": "^3.0.0-rc.6",
     "sass": "^1.54.0",
     "sass-loader": "^13.0.2"
   }
