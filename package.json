@@ -65,6 +65,9 @@
     },
     "platform-detect": {
       "optional": true
+    },
+    "vue": {
+      "optional": true
     }
   },
   "devDependencies": {
