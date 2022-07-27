@@ -58,11 +58,11 @@ Or use the `nuxt.config` helper `linna`, which does the same thing.
 
 ### Todo
 
-- [] Add tests
-- [] Make test watcher the dev command
-- [] Set test command as default in codesandbox
-- [] `Icon` component
-- [] `modelValue` composable
-- [] Add `persist` composable
-- [] Add `nuxtPage` composable
-- [] Make textfield support custom content and not just icons
+- [ ] Add tests
+- [ ] Make test watcher the dev command
+- [ ] Set test command as default in codesandbox
+- [ ] `Icon` component
+- [ ] `modelValue` composable
+- [ ] Add `persist` composable
+- [ ] Add `nuxtPage` composable
+- [ ] Make textfield support custom content and not just icons
