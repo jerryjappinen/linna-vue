@@ -51,32 +51,34 @@ export default {
       default: true
     },
 
-    iconLeft: {
-      default: null
-    },
-
-    iconRight: {
-      default: null
-    },
-
 
 
     // State params
 
     block: {
+      type: Boolean,
       default: null
     },
 
     center: {
+      type: Boolean,
       default: null
     },
 
     loading: {
+      type: Boolean,
       default: null
     },
 
     disabled: {
+      type: Boolean,
       default: false
+    },
+
+    // This component includes no styling, but user can add style classes using this
+    theme: {
+      type: String,
+      default: null
     }
 
   },
@@ -141,6 +143,26 @@ export default {
       }
 
       return bindings
+    },
+
+    classes () {
+      const classes = {
+        'c-click-button-loading': this.loading,
+        'c-click-button-not-loading': !this.loading,
+        'c-click-button-disabled': this.disabled,
+        'c-click-button-enabled': !this.disabled,
+        'c-click-button-block': this.block,
+        'c-click-button-center': this.center
+      }
+
+      // Include flat class names for theme
+      if (this.theme) {
+        for (const className in classes) {
+          classes[className.replace('c-click-button', 'c-click-button-' + this.theme)] = classes[className]
+        }
+      }
+
+      return classes
     }
 
   },
@@ -163,14 +185,7 @@ export default {
     :is="component"
     v-bind="bindings"
     :disabled="disabled"
-    :class="{
-      'c-click-button-loading': loading,
-      'c-click-button-not-loading': !loading,
-      'c-click-button-disabled': disabled,
-      'c-click-button-enabled': !disabled,
-      'c-click-button-block': block,
-      'c-click-button-center': center
-    }"
+    :class="classes"
     class="c-click-button"
     @click="onClick"
   >
