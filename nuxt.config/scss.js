@@ -21,7 +21,7 @@ export default ({
   let sharedFiles = []
   if (shared) {
     sharedFiles = compact(flatten([shared])).map((path) => {
-      return `@import '@/${path};'`
+      return `@import '@/${path}';`
     })
   }
 
