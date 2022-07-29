@@ -7,7 +7,9 @@ export default (options) => {
   const icons = !!opts.icons || (opts.icons === false ? false : true)
 
   // Include library components in the compilation
-  const transpile = []
+  const transpile = [
+    'linna-vue'
+  ]
 
   // Auto load linna (will auto-import components)
   const modules = []
@@ -23,15 +25,6 @@ export default (options) => {
       composables,
       prefix: opts.prefix
     }])
-
-    if (composables) {
-      transpile.push('linna-vue/composables')
-    }
-
-    if (components) {
-      transpile.push('linna-vue/components')
-    }
-
   }
 
   return {
