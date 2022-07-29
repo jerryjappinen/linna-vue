@@ -2,7 +2,8 @@
 // https://github.com/exreplay/nuxt-compression
 export default (options) => {
   return {
-    buildModules: ['@averjs/nuxt-compression', {
+    buildModules: ['@averjs/nuxt-compression'],
+    compression: {
       // maxAge: ...,
       // cacheControl: ...,
 
