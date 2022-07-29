@@ -1,8 +1,13 @@
 export { default as mergeConfigs  } from './mergeConfigs'
 
+export { default as dev  } from './dev'
+export { default as production  } from './production'
+
+export { default as linna } from './linna'
+export { default as linnaDev } from './linnaDev'
+
 export { default as assets } from './assets'
 export { default as compression } from './compression'
-export { default as linna } from './linna'
 export { default as markdown } from './markdown'
 export { default as meta } from './meta'
 export { default as pinia } from './pinia'
