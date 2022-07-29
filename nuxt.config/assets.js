@@ -108,7 +108,7 @@ export default ({
   // https://v3.nuxtjs.org/docs/directory-structure/nuxt.config#meta
   return {
     meta: {
-      link: links,
+      link: linkTags,
       meta: metaTags
     }
   }
