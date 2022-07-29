@@ -63,9 +63,6 @@
     "nuxt": {
       "optional": true
     },
-    "platform-detect": {
-      "optional": true
-    },
     "vite-plugin-markdown": {
       "optional": true
     },
