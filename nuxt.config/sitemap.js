@@ -1,4 +1,5 @@
-import { compact, flatten } from 'lodash-es'
+import compact from 'lodash-es/compact'
+import flatten from 'lodash-es/flatten'
 
 // Define extra routes to generate
 // https://v3.nuxtjs.org/guide/deploy/static-hosting#client-side-only-rendering

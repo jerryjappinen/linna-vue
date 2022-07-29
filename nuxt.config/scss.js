@@ -1,4 +1,5 @@
-import { compact, flatten } from 'lodash-es'
+import compact from 'lodash-es/compact'
+import flatten from 'lodash-es/flatten'
 
 // SCSS preprocessing setup
 // e.g. scss({ global: 'styles/index.scss', shared: 'styles/mixins.scss', external: 'https://...css' })

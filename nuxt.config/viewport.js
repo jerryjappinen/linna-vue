@@ -1,32 +1,45 @@
 // Behavioral base meta tags
-// FIXME: make viewport settings adjustable
-export default () => {
+export default ({
+  width,
+  initialScale,
+  themeColor
+}) => {
+  const metaTags = [
+    { charset: 'utf-8' },
+
+    // Mobile
+    {
+      name: 'viewport',
+      content: `width=${width || 'device-width'}, initial-scale=${initialScale || 1}`
+    },
+
+    // FIXME: make this adapt to theme color
+    {
+      hid: 'apple-mobile-web-app-status-bar-style',
+      name: 'apple-mobile-web-app-status-bar-style',
+      content: 'black-translucent',
+    },
+    {
+      hid: 'apple-mobile-web-app-capable',
+      name: 'apple-mobile-web-app-capable',
+      content: 'yes',
+    },
+
+    // Meta data
+    {
+      hid: 'og:type',
+      property: 'og:type',
+      content: 'website'
+    }
+  ]
+
+  if (themeColor) {
+    metaTags.push({ hid: 'theme-color', name: 'theme-color', content: themeColor })
+  }
+
   return {
     meta: {
-      meta: [
-        { charset: 'utf-8' },
-
-        // Mobile
-        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        {
-          hid: 'apple-mobile-web-app-status-bar-style',
-          name: 'apple-mobile-web-app-status-bar-style',
-          content: 'default',
-        },
-        {
-          hid: 'apple-mobile-web-app-status-bar-style',
-          name: 'apple-mobile-web-app-status-bar-style',
-          content: 'default',
-        },
-        {
-          hid: 'apple-mobile-web-app-capable',
-          name: 'apple-mobile-web-app-capable',
-          content: 'yes',
-        },
-
-        // Meta data
-        { hid: 'og:type', property: 'og:type', content: 'website' },
-      ]
+      meta: metaTags
     }
   }
 }

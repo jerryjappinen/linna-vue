@@ -1,4 +1,5 @@
-import { compact, flatten } from 'lodash-es'
+import compact from 'lodash-es/compact'
+import flatten from 'lodash-es/flatten'
 
 import viteMarkdownPlugin from 'vite-plugin-markdown'
 

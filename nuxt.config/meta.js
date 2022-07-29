@@ -5,7 +5,6 @@ export default ({
   siteTitle,
   longSiteTitle,
   siteDescription,
-  siteMainColor,
   facebookAppId,
   twitterUsername
 }) => {
@@ -38,10 +37,6 @@ export default ({
       })
     }
 
-  }
-
-  if (siteMainColor) {
-    metaTags.push({ hid: 'theme-color', name: 'theme-color', content: siteMainColor })
   }
 
   if (facebookAppId) {
