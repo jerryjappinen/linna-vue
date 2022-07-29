@@ -49,6 +49,8 @@
     "markdown-it": "^13.0.1",
     "nuxt": "^3.0.0-rc.6",
     "platform-detect": "^3.0.1",
+    "vite-plugin-markdown": "^2.0.2",
+    "vite-svg-loader": "^3.4.0",
     "vue": "^3.2.37"
   },
   "peerDependenciesMeta": {
@@ -62,6 +64,12 @@
       "optional": true
     },
     "platform-detect": {
+      "optional": true
+    },
+    "vite-plugin-markdown": {
+      "optional": true
+    },
+    "vite-svg-loader": {
       "optional": true
     },
     "vue": {

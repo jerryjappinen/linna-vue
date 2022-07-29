@@ -1,8 +1,10 @@
 // https://v3.nuxtjs.org/docs/directory-structure/nuxt.config
 export default (options) => {
-  const components = !!options.components || (options.components === false ? false : true)
-  const composables = !!options.composables || (options.composables === false ? false : true)
-  const icons = !!options.icons || (options.icons === false ? false : true)
+  const opts = options || {}
+
+  const components = !!opts.components || (opts.components === false ? false : true)
+  const composables = !!opts.composables || (opts.composables === false ? false : true)
+  const icons = !!opts.icons || (opts.icons === false ? false : true)
 
   // Include library components in the compilation
   const transpile = []
@@ -19,7 +21,7 @@ export default (options) => {
     modules.push('linna-vue/nuxt', {
       components,
       composables,
-      prefix: options.prefix
+      prefix: opts.prefix
     })
 
     if (composables) {

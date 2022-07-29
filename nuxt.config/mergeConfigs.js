@@ -7,7 +7,7 @@ import mergeWith from 'lodash-es/mergeWith'
 
 // Merge objects and arrays recursively
 // https://lodash.com/docs/4.17.15#mergeWith
-export const merge = (...objects) => {
+export default (...objects) => {
   return mergeWith({}, ...objects, (objValue, srcValue) => {
     if (isArray(objValue)) {
       return objValue.concat(srcValue)

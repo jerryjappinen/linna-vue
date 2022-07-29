@@ -1,4 +1,4 @@
-export { default as merge  } from './merge'
+export { default as mergeConfigs  } from './mergeConfigs'
 
 export { default as assets } from './assets'
 export { default as compression } from './compression'
