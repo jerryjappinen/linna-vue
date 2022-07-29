@@ -1,6 +1,6 @@
 {
   "name": "linna-vue",
-  "version": "0.5.22",
+  "version": "0.5.23",
   "description": "Component library for Vue.",
   "private": false,
   "type": "module",
