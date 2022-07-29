@@ -52,7 +52,7 @@ export default ({
       css: {
         preprocessorOptions: {
           scss: {
-            additionalData: sharedFiles.join('\n')
+            additionalData: sharedFiles.join('\n') + '\n'
           }
         }
       }

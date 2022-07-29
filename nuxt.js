@@ -46,21 +46,4 @@ export default defineNuxtModule({
 
   }
 
-  // hooks: {
-  //   // NOTE: Does not support prefixing
-  //   // https://github.com/nuxt-community/sanity-module/blob/main/src/module.ts#L120-L126
-  //   // 'autoImports:dirs' (dirs) {
-  //   //   dirs.push(composablesDir)
-  //   // },
-  //   // Auto load components
-  //   // https://github.com/nuxt/framework/blob/main/packages/schema/src/types/hooks.ts
-  //   'components:dirs' (dirs) {
-  //     dirs.push({
-  //       path: componentsDir,
-  //       extensions: ['vue'],
-  //       prefix: prefix || ''
-  //     })
-  //   }
-  // },
-
 })

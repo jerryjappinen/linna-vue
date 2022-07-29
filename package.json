@@ -5,6 +5,7 @@
   "private": false,
   "type": "module",
   "files": [
+    "dist/*",
     "components/*",
     "composables/*",
     "nuxt.config/*",
@@ -13,8 +14,7 @@
     "composables.js",
     "index.js",
     "nuxt.js",
-    "stores.js",
-    "dist/*"
+    "stores.js"
   ],
   "license": "MIT",
   "scripts": {
