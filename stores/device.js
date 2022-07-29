@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+// import { ref, computed } from 'vue'
 
 import useCursor from '../composables/useCursor'
 import useNetwork from '../composables/useNetwork'
@@ -14,36 +15,40 @@ const keys = [
   'viewport'
 ]
 
-export default defineStore('device', {
+export default defineStore('device', () => {
+  const cursor = useCursor()
+  const network = useNetwork()
+  const platform = usePlatform()
+  const time = useTime()
+  const viewport = useViewport()
 
-  state () {
-    return {
-      cursor: useCursor(),
-      network: useNetwork(),
-      platform: usePlatform(),
-      time: useTime(),
-      viewport: useViewport()
-    }
-  },
-
-  actions: {
-
-    run (methodName) {
-      keys.forEach((key) => {
-        if (this[key][methodName]) {
-          this[key][methodName]()
-        }
-      })
-    },
-
-    init () {
-      this.run('init')
-    },
-
-    uninit () {
-      this.run('uninit')
-    }
-
+  const modules = {
+    cursor,
+    network,
+    platform,
+    time,
+    viewport
   }
 
+  const run = (methodName) => {
+    keys.forEach((key) => {
+      if (modules[key][methodName]) {
+        modules[key][methodName]()
+      }
+    })
+  }
+
+  const init = () => {
+    run('init')
+  }
+
+  const uninit = () => {
+    run('uninit')
+  }
+
+  return {
+    ...modules,
+    init,
+    uninit
+  }
 })

@@ -1,13 +1,15 @@
 import { defineNuxtModule, addComponentsDir, addAutoImportDir } from '@nuxt/kit'
 import { fileURLToPath } from 'node:url'
 
-const componentsDir = fileURLToPath(new URL('./components', import.meta.url))
-const composablesDir = fileURLToPath(new URL('./composables', import.meta.url))
-
+// This file allows auto importing linna-icons in a Nuxt app
+// Add this to nuxt.config:
+//   modules: [
+//     'linna-vue/nuxt'
+//   ]
 export default defineNuxtModule({
   meta: {
     name: 'linna-vue',
-    configKey: 'linna-vue',
+    configKey: 'linnaVue',
     compatibility: {
       nuxt: '^3.0.0'
     }
@@ -20,6 +22,9 @@ export default defineNuxtModule({
   },
 
   async setup ({ components, composables, prefix }) {
+    const componentsDir = fileURLToPath(new URL('./components', import.meta.url))
+    const composablesDir = fileURLToPath(new URL('./composables', import.meta.url))
+
     if (components) {
       await addComponentsDir({
         path: componentsDir,
