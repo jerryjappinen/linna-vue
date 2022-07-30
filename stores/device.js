@@ -1,4 +1,4 @@
-import { defineStore } from 'pinia'
+// import { defineStore } from 'pinia'
 // import { ref, computed } from 'vue'
 
 import useCursor from '../composables/useCursor'
@@ -15,7 +15,11 @@ const keys = [
   'viewport'
 ]
 
-export default defineStore('device', () => {
+// export default defineStore('device', () => { })
+
+// Exports the setup function for this store
+// defineStore must be called in the client app
+export default () => {
   const cursor = useCursor()
   const network = useNetwork()
   const platform = usePlatform()
@@ -51,4 +55,4 @@ export default defineStore('device', () => {
     init,
     uninit
   }
-})
+}
