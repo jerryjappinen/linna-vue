@@ -1,4 +1,4 @@
-import { defineStore } from 'pinia'
+// import { defineStore } from 'pinia'
 // import { ref, computed } from 'vue'
 
 import useCursor from '../composables/useCursor'
@@ -7,7 +7,11 @@ import usePlatform from '../composables/usePlatform'
 import useTime from '../composables/useTime'
 import useViewport from '../composables/useViewport'
 
-export default defineStore('device', () => {
+// export default defineStore('device', () => { })
+
+// Exports the setup function for this store
+// defineStore must be called in the client app
+export default () => {
   const modules = {
     cursor: useCursor(),
     network: useNetwork(),
@@ -16,7 +20,6 @@ export default defineStore('device', () => {
     viewport: useViewport()
   }
 
-  // Call a function from each module if it exists
   const run = (methodName) => {
     for (const key in modules) {
       if (modules[key][methodName]) {
@@ -38,4 +41,4 @@ export default defineStore('device', () => {
     init,
     uninit
   }
-})
+}

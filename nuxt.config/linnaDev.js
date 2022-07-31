@@ -24,7 +24,8 @@ export default (pathsInput) => {
 
     for (const packageName in envVarNames) {
       if (paths[packageName] || process.env[envVarNames[packageName]]) {
-        devConfig.alias[packageName] = resolve(__dirname, paths[packageName] || process.env[envVarNames[packageName]])
+        // devConfig.alias[packageName] = resolve(__dirname, paths[packageName] || process.env[envVarNames[packageName]])
+        devConfig.alias[packageName] = resolve(paths[packageName] || process.env[envVarNames[packageName]])
       }
     }
 
