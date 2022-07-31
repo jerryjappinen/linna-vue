@@ -1,6 +1,6 @@
 {
   "name": "linna-vue",
-  "version": "0.5.23",
+  "version": "0.5.25",
   "description": "Component library for Vue.",
   "private": false,
   "type": "module",
@@ -39,22 +39,25 @@
     "url": "https://github.com/jerryjappinen/linna-vue.git"
   },
   "dependencies": {
+    "@averjs/nuxt-compression": "^1.2.0",
+    "@nuxtjs/sitemap": "^2.4.0",
+    "@pinia/nuxt": "^0.3.1",
+    "platform-detect": "^3.0.1",
+    "vite-plugin-markdown": "^2.0.2",
+    "vite-svg-loader": "^3.4.0",
     "vue3-slider": "^1.8.0"
   },
   "peerDependencies": {
-    "@pinia/nuxt": "^0.3.1",
+    "date-fns": "^2.29.1",
     "linna-sass": "^1.0.8",
     "linna-util": "^6.2.4",
     "lodash-es": "^4.17.21",
     "markdown-it": "^13.0.1",
     "nuxt": "^3.0.0-rc.6",
-    "platform-detect": "^3.0.1",
-    "vite-plugin-markdown": "^2.0.2",
-    "vite-svg-loader": "^3.4.0",
     "vue": "^3.2.37"
   },
   "peerDependenciesMeta": {
-    "@pinia/nuxt": {
+    "date-fns": {
       "optional": true
     },
     "markdown-it": {
@@ -63,18 +66,11 @@
     "nuxt": {
       "optional": true
     },
-    "vite-plugin-markdown": {
-      "optional": true
-    },
-    "vite-svg-loader": {
-      "optional": true
-    },
     "vue": {
       "optional": true
     }
   },
   "devDependencies": {
-    "pinia": "^2.0.17",
     "sass": "^1.54.0",
     "sass-loader": "^13.0.2"
   }
