@@ -20,7 +20,7 @@ export default (options) => {
   }
 
   if (composables || components) {
-    modules.push(['linna-vue/nuxt', {
+    modules.push(['../linna-vue/nuxt', {
       components,
       composables,
       prefix: opts.prefix

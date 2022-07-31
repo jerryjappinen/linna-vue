@@ -33,6 +33,7 @@ export default ({
     }
   ]
 
+  // FIXME: also generate manifest.json
   if (themeColor) {
     metaTags.push({ hid: 'theme-color', name: 'theme-color', content: themeColor })
   }
