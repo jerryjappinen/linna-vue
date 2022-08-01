@@ -1,4 +1,4 @@
-import { resolve } from 'path'
+import { fileURLToPath } from 'node:url'
 
 // https://github.com/nuxt/framework/issues/6205
 // import { isDev } from 'linna-util'
@@ -8,6 +8,7 @@ const isDev = () => {
 
 // Link to local source files when running docs
 const envVarNames = {
+  'linna-icons': 'ALIAS_LINNA_ICONS',
   'linna-sass': 'ALIAS_LINNA_SASS',
   'linna-svg': 'ALIAS_LINNA_SVG',
   'linna-util': 'ALIAS_LINNA_UTIL',
@@ -22,21 +23,27 @@ export default (pathsInput) => {
       alias: {}
     }
 
+    // Resolve path entered by user in their nuxt config correctly
+    // This module is running from node_modules/linna-vue/nuxt.config/linnaDev
+    const resolvePath = (path) => {
+      return fileURLToPath(new URL('../../../../' + path, import.meta.url))
+    }
+
     for (const packageName in envVarNames) {
       if (paths[packageName] || process.env[envVarNames[packageName]]) {
         // devConfig.alias[packageName] = resolve(__dirname, paths[packageName] || process.env[envVarNames[packageName]])
-        devConfig.alias[packageName] = resolve(paths[packageName] || process.env[envVarNames[packageName]])
+        devConfig.alias[packageName] = resolvePath(paths[packageName] || process.env[envVarNames[packageName]])
       }
     }
 
     // linna-sass's source code is nested
     if (devConfig.alias['linna-sass']) {
-      devConfig.alias['linna-sass'] = resolve(devConfig.alias['linna-sass'], 'src')
+      devConfig.alias['linna-sass'] = resolvePath(devConfig.alias['linna-sass'], 'src')
     }
 
     // linna-util's source is nested
     if (devConfig.alias['linna-util']) {
-      devConfig.alias['linna-util'] = resolve(devConfig.alias['linna-util'], 'src')
+      devConfig.alias['linna-util'] = resolvePath(devConfig.alias['linna-util'], 'src')
 
       // Local utilities must be transpiled
       // devConfig.build = {
