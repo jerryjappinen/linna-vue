@@ -38,7 +38,7 @@
     "url": "https://github.com/jerryjappinen/linna-vue.git"
   },
   "dependencies": {
-    "@averjs/nuxt-compression": "^1.2.0",
+    "@averjs/nuxt-compression": "^1.2.1",
     "@nuxtjs/sitemap": "^2.4.0",
     "@pinia/nuxt": "^0.3.1",
     "platform-detect": "^3.0.1",
@@ -49,7 +49,7 @@
   "peerDependencies": {
     "date-fns": "^2.29.1",
     "linna-sass": "^1.0.11",
-    "linna-util": "^6.3.0",
+    "linna-util": "^6.3.2",
     "lodash-es": "^4.17.21",
     "markdown-it": "^13.0.1",
     "nuxt": "^3.0.0-rc.6",
