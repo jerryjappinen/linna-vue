@@ -28,7 +28,7 @@ export default (pathsInput) => {
     // Resolve path entered by user in their nuxt config correctly
     // This module is running from node_modules/linna-vue/nuxt.config/linnaDev
     const resolvePath = (...paths) => {
-      return fileURLToPath(new URL('../../../' + paths.join('/'), import.meta.url))
+      return paths.join('/')
     }
 
     // Add an alias for each path that was set
