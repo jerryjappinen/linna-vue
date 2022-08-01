@@ -1,11 +1,7 @@
 import { defineNuxtModule, addComponentsDir, addAutoImportDir } from '@nuxt/kit'
 import { fileURLToPath } from 'node:url'
 
-// This file allows auto importing linna-icons in a Nuxt app
-// Add this to nuxt.config:
-//   modules: [
-//     'linna-vue/nuxt'
-//   ]
+// This file allows auto importing linna-vue components and composables in a Nuxt app
 export default defineNuxtModule({
   meta: {
     name: 'linna-vue',
