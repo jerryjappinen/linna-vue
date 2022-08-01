@@ -24,8 +24,12 @@ export default defineNuxtModule({
   async setup ({ components, composables, prefix }) {
 
     if (components) {
+      const componentsDir = fileURLToPath(new URL('./components', import.meta.url))
+
+      console.log('componentsDir', componentsDir)
+
       await addComponentsDir({
-        path: fileURLToPath(new URL('./components', import.meta.url)),
+        path: componentsDir,
         extensions: ['vue'],
         prefix: prefix || ''
       })

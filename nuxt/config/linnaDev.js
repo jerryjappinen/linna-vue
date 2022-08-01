@@ -23,29 +23,28 @@ export default (pathsInput) => {
       alias: {}
     }
 
-    console.log('pathsInput', pathsInput)
-
     // Resolve path entered by user in their nuxt config correctly
     // This module is running from node_modules/linna-vue/nuxt.config/linnaDev
-    const resolvePath = (...paths) => {
+    const joinPaths = (...paths) => {
       return paths.join('/')
     }
 
     // Add an alias for each path that was set
     for (const packageName in envVarNames) {
-      if (paths[packageName] || process.env[envVarNames[packageName]]) {
-        devConfig.alias[packageName] = resolvePath(paths[packageName] || process.env[envVarNames[packageName]])
+      const packagePath = paths[packageName] || process.env[envVarNames[packageName]]
+      if (packagePath) {
+        devConfig.alias[packageName] = packagePath
       }
     }
 
     // linna-sass's source code is nested
     if (devConfig.alias['linna-sass']) {
-      devConfig.alias['linna-sass'] = resolvePath(devConfig.alias['linna-sass'], 'src')
+      devConfig.alias['linna-sass'] = joinPaths(devConfig.alias['linna-sass'], 'src')
     }
 
     // linna-util's source is nested
     if (devConfig.alias['linna-util']) {
-      devConfig.alias['linna-util'] = resolvePath(devConfig.alias['linna-util'], 'src')
+      devConfig.alias['linna-util'] = joinPaths(devConfig.alias['linna-util'], 'src')
 
       // Local utilities must be transpiled
       // devConfig.build = {
