@@ -25,13 +25,13 @@ export default (pathsInput) => {
 
     // Resolve path entered by user in their nuxt config correctly
     // This module is running from node_modules/linna-vue/nuxt.config/linnaDev
-    const resolvePath = (path) => {
-      return fileURLToPath(new URL('../../../../' + path, import.meta.url))
+    const resolvePath = (...paths) => {
+      return fileURLToPath(new URL('../../../../' + paths.join('/'), import.meta.url))
     }
 
+    // Add an alias for each path that was set
     for (const packageName in envVarNames) {
       if (paths[packageName] || process.env[envVarNames[packageName]]) {
-        // devConfig.alias[packageName] = resolve(__dirname, paths[packageName] || process.env[envVarNames[packageName]])
         devConfig.alias[packageName] = resolvePath(paths[packageName] || process.env[envVarNames[packageName]])
       }
     }
