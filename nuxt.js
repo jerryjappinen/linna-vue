@@ -22,7 +22,6 @@ export default defineNuxtModule({
   },
 
   async setup ({ components, composables, prefix }) {
-    console.log('module setup()', fileURLToPath(new URL('./components', import.meta.url)))
 
     if (components) {
       await addComponentsDir({
