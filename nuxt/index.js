@@ -20,7 +20,7 @@ export default defineNuxtModule({
   async setup ({ components, composables, prefix }) {
 
     if (components) {
-      const componentsDir = fileURLToPath(new URL('./components', import.meta.url))
+      const componentsDir = fileURLToPath(new URL('../components', import.meta.url))
 
       console.log('componentsDir', componentsDir)
 
@@ -33,7 +33,8 @@ export default defineNuxtModule({
 
     // FIXME: no prefixing for composables
     if (composables) {
-      addAutoImportDir(fileURLToPath(new URL('./composables', import.meta.url)))
+      const composablesDir = fileURLToPath(new URL('../composables', import.meta.url))
+      addAutoImportDir(composablesDir)
 
       // Prefixing can be done here, but no way to make default imports work?
       // addAutoImport(composableNames.map((composableName) => {
