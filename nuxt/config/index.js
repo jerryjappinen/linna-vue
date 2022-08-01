@@ -4,7 +4,6 @@ export { default as dev  } from './dev'
 export { default as production  } from './production'
 
 export { default as linna } from './linna'
-export { default as linnaDev } from './linnaDev'
 
 export { default as assets } from './assets'
 export { default as compression } from './compression'
