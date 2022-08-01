@@ -22,7 +22,7 @@ export default defineNuxtModule({
     if (components) {
       const componentsDir = fileURLToPath(new URL('../components', import.meta.url))
 
-      console.log('componentsDir', componentsDir)
+      // console.log('componentsDir', componentsDir)
 
       await addComponentsDir({
         path: componentsDir,
