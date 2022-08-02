@@ -1,5 +1,5 @@
 // https://vuejs.org/guide/reusability/composables.html#mouse-tracker-example
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 
 export default () => {
   const isMounted = ref(false)
