@@ -1,190 +1,208 @@
-<script>
+<script setup>
+import { resolveComponent } from 'vue'
+
 import Fade from './Fade'
 import Icon from './Icon'
 import Spinner from './Spinner'
 
-export default {
+import { ref, computed, unref } from 'vue'
 
-  components: {
-    Fade,
-    Icon,
-    Spinner
+const props = defineProps({
+
+  // Target link
+  href: {
+    type: String,
+    default: null
   },
 
-  props: {
-
-    // Target link
-
-    href: {
-      type: String,
-      default: null
-    },
-
-    to: {
-      type: [String, Object],
-      default: null
-    },
-
-    mailto: {
-      type: String,
-      default: null
-    },
-
-    tel: {
-      type: String,
-      default: null
-    },
-
-    external: {
-      default: null
-    },
-
-    noIndex: {
-      default: null
-    },
-
-    submit: {
-      default: null
-    },
-
-    tab: {
-      default: true
-    },
-
-
-
-    // State params
-
-    block: {
-      type: Boolean,
-      default: null
-    },
-
-    center: {
-      type: Boolean,
-      default: null
-    },
-
-    loading: {
-      type: Boolean,
-      default: null
-    },
-
-    disabled: {
-      type: Boolean,
-      default: false
-    },
-
-    // This component includes no styling, but user can add style classes using this
-    theme: {
-      type: String,
-      default: null
-    }
-
+  to: {
+    type: [String, Object],
+    default: null
   },
 
-  computed: {
-
-    component () {
-
-      if (this.href || this.mailto || this.tel) {
-        return 'a'
-      }
-
-      if (this.to) {
-        return this.$nuxt ? 'nuxt-link' : 'router-link'
-      }
-
-      return 'button'
-    },
-
-    isRouterLink () {
-      return !!(this.component === 'router-link' || this.component === 'nuxt-link')
-    },
-
-    bindings () {
-      const bindings = {}
-
-      if (!this.tab) {
-        bindings.tabindex = '-1'
-      }
-
-      // Email address
-      if (this.mailto) {
-        bindings.href = 'mailto:' + this.mailto
-
-      // Phone link
-      } else if (this.tel) {
-        bindings.href = 'tel:' + this.tel
-
-      // Button
-      } else if (this.component === 'button') {
-        bindings.type = this.submit ? 'submit' : 'button'
-
-      // Link
-      } else {
-
-        if (this.to) {
-          bindings.to = this.to
-        }
-
-        if (this.href) {
-          bindings.href = this.href
-        }
-
-      }
-
-      if (this.noIndex || (this.external && this.noIndex !== false)) {
-        bindings.rel = 'nofollow noopener noreferrer'
-      }
-
-      if (this.external) {
-        bindings.target = '_blank'
-      }
-
-      return bindings
-    },
-
-    classes () {
-      const classes = {
-        'c-click-button-loading': this.loading,
-        'c-click-button-not-loading': !this.loading,
-        'c-click-button-disabled': this.disabled,
-        'c-click-button-enabled': !this.disabled,
-        'c-click-button-block': this.block,
-        'c-click-button-center': this.center
-      }
-
-      // Include flat class names for theme
-      if (this.theme) {
-        for (const className in classes) {
-          classes[className.replace('c-click-button', 'c-click-button-' + this.theme)] = classes[className]
-        }
-      }
-
-      return classes
-    }
-
+  mailto: {
+    type: String,
+    default: null
   },
 
-  methods: {
+  tel: {
+    type: String,
+    default: null
+  },
 
-    onClick (event) {
-      if (!this.disabled) {
-        this.$emit('click', event)
-      }
-    }
+  external: {
+    default: null
+  },
 
+  noIndex: {
+    default: null
+  },
+
+  submit: {
+    default: null
+  },
+
+  tab: {
+    default: true
+  },
+
+
+
+  // State params
+
+  block: {
+    type: Boolean,
+    default: null
+  },
+
+  center: {
+    type: Boolean,
+    default: null
+  },
+
+  loading: {
+    type: Boolean,
+    default: null
+  },
+
+  disabled: {
+    type: Boolean,
+    default: false
+  },
+
+  // This component includes no styling, but user can add style classes using this
+  theme: {
+    type: String,
+    default: null
   }
 
+})
+
+const emit = defineEmits(['click'])
+
+const htmlElementName = computed(() => {
+  if (unref(props.href) || unref(props.mailto) || unref(props.tel)) {
+    return 'a'
+  }
+
+  if (!unref(props.to)) {
+    return 'button'
+  }
+
+  return null
+})
+
+const isRouterLink = computed(() => {
+  return !htmlElementName.value
+})
+
+const is = computed(() => {
+  if (htmlElementName.value) {
+    return htmlElementName.value
+  }
+
+  // Dynamic element
+  // return this.$nuxt ? resolveComponent('NuxtLink') : resolveComponent('RouterLink')
+  try {
+    return resolveComponent('NuxtLink')
+
+  } catch (error) {
+    // Nuxt is not available
+  }
+
+  return resolveComponent('RouterLink')
+})
+
+
+
+const vBind = computed(() => {
+  const bindings = {}
+
+  const tab = unref(props.tab)
+  const mailto = unref(props.mailto)
+  const tel = unref(props.tel)
+  const submit = unref(props.submit)
+  const to = unref(props.to)
+  const href = unref(props.href)
+  const noIndex = unref(props.noIndex)
+  const external = unref(props.external)
+
+  if (!tab) {
+    bindings.tabindex = '-1'
+  }
+
+  // Email address
+  if (mailto) {
+    bindings.href = 'mailto:' + mailto
+
+  // Phone link
+  } else if (tel) {
+    bindings.href = 'tel:' + tel
+
+  // Button
+  } else if (htmlElementName.value === 'button') {
+    bindings.type = submit ? 'submit' : 'button'
+
+  // Link
+  } else {
+    if (to) {
+      bindings.to = to
+    }
+
+    if (href) {
+      bindings.href = href
+    }
+  }
+
+  if (noIndex || (external && noIndex !== false)) {
+    bindings.rel = 'nofollow noopener noreferrer'
+  }
+
+  if (external) {
+    bindings.target = '_blank'
+  }
+
+  return bindings
+})
+
+const classes = computed(() => {
+  const theme = unref(props.theme)
+  const loading = unref(props.loading)
+  const disabled = unref(props.disabled)
+  const block = unref(props.block)
+  const center = unref(props.center)
+
+  const classes = {
+    'c-click-button-loading': loading,
+    'c-click-button-not-loading': !loading,
+    'c-click-button-disabled': disabled,
+    'c-click-button-enabled': !disabled,
+    'c-click-button-block': block,
+    'c-click-button-center': center
+  }
+
+  // Include flat class names for theme
+  if (theme) {
+    for (const className in classes) {
+      classes[className.replace('c-click-button', 'c-click-button-' + theme)] = classes[className]
+    }
+  }
+
+  return classes
+})
+
+const onClick = (event) => {
+  if (!unref(props.disabled)) {
+    emit('click', event)
+  }
 }
 </script>
 
 <template>
   <component
-    :is="component"
-    v-bind="bindings"
-    :disabled="disabled"
+    :is="is"
+    v-bind="vBind"
+    :disabled="props.disabled"
     :class="classes"
     class="c-click-button"
     @click="onClick"
@@ -192,13 +210,13 @@ export default {
 
     <Fade>
       <Spinner
-        v-if="loading"
+        v-if="props.loading"
         class="c-click-button-spinner"
       />
     </Fade>
 
-    <Fade>
-      <Icon v-if="$slots['icon-left'] && !loading">
+    <!-- <Fade>
+      <Icon v-if="$slots['icon-left'] && !props.loading">
         <slot
           name="icon-left"
           class="c-click-button-icon c-click-button-icon-left"
@@ -207,18 +225,18 @@ export default {
     </Fade>
 
     <Fade>
-      <Icon v-if="$slots['icon-right'] && !loading">
+      <Icon v-if="$slots['icon-right'] && !props.loading">
         <slot
           name="icon-right"
           class="c-click-button-icon c-click-button-icon-right"
         />
       </Icon>
-    </Fade>
+    </Fade> -->
 
     <span
       :class="{
-        'c-click-button-content-block': block,
-        'c-click-button-content-center': center
+        'c-click-button-content-block': props.block,
+        'c-click-button-content-center': props.center
       }"
       class="c-click-button-content"
     >
