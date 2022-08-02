@@ -1,6 +1,7 @@
 <script setup>
 import { computed } from 'vue'
-import { isNumber, isString } from 'lodash-es'
+import isNumber from 'lodash-es/isNumber'
+import isString from 'lodash-es/isString'
 
 const props = defineProps({
   data: {

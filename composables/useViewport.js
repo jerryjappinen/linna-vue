@@ -1,6 +1,6 @@
 import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 
-import { debounce } from 'lodash-es'
+import debounce from 'lodash-es/debounce'
 
 import { detectObtrusiveScrollbars, userPrefersDarkMode } from 'linna-util'
 
