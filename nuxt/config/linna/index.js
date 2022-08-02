@@ -36,8 +36,8 @@ export default (options) => {
   }
 
   // Only in dev mode when asked
-  const alias = opts.local && isDev()
-    ? getDevAliases(opts.local)
+  const alias = opts.dev && isDev()
+    ? getDevAliases(opts.dev)
     : {}
 
   return {

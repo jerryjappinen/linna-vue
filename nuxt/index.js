@@ -14,7 +14,7 @@ export default defineNuxtModule({
   defaults: {
     components: true,
     composables: true,
-    prefix: 'true'
+    prefix: ''
   },
 
   async setup ({ components, composables, prefix }) {
@@ -22,13 +22,12 @@ export default defineNuxtModule({
     if (components) {
       const componentsDir = fileURLToPath(new URL('../components', import.meta.url))
 
-      // console.log('componentsDir', componentsDir)
-
       await addComponentsDir({
         path: componentsDir,
         extensions: ['vue'],
         prefix: prefix || ''
       })
+
     }
 
     // FIXME: no prefixing for composables
