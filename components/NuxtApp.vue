@@ -1,9 +1,10 @@
 <script setup>
 // Poor man's app lifecycle handling
 import { isClient } from 'linna-util'
-
-import { NuxtLayout, NuxtPage } from 'nuxt'
 import { onMounted } from 'vue'
+
+// NOTE: this should be available runtime
+// import { NuxtLayout, NuxtPage } from 'nuxt'
 
 const props = defineProps({
 
