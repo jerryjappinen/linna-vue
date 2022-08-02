@@ -1,6 +1,7 @@
 <script setup>
 // Poor man's app lifecycle handling
-import { isClient } from 'linna-util'
+import isClient from 'linna-util/isClient'
+
 import { onMounted } from 'vue'
 
 // NOTE: this should be available runtime

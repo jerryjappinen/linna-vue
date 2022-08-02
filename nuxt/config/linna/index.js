@@ -1,7 +1,7 @@
 import getDevAliases from './getDevAliases'
 
 // https://github.com/nuxt/framework/issues/6205
-// import { isDev } from 'linna-util'
+// import isDev from 'linna-util/isDev'
 const isDev = () => {
   return process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test'
 }
@@ -16,6 +16,7 @@ export default (options) => {
 
   // Include library components in the compilation
   const transpile = [
+    'linna-util',
     'linna-vue'
   ]
 

@@ -4,7 +4,8 @@ import { differenceInDays, formatRelative, isDate } from 'date-fns'
 import isNumber from 'lodash-es/isNumber'
 import upperFirst from 'lodash-es/upperFirst'
 
-import { formatDate, formatMachineReadableDate } from 'linna-util'
+import formatDate from 'linna-util/formatDate'
+import formatMachineReadableDate from 'linna-util/formatMachineReadableDate'
 
 export default {
 

@@ -1,6 +1,6 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 
-import { gamepadIsSupported } from 'linna-util'
+import gamepadIsSupported from 'linna-util/gamepadIsSupported'
 // import getDirection from 'linna-util/getDirection'
 // import getGamepads from 'linna-util/getGamepads'
 

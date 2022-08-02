@@ -37,14 +37,6 @@ export default (pathsInput) => {
   // linna-util's source is nested
   if (aliases['linna-util']) {
     aliases['linna-util'] = joinPaths(aliases['linna-util'], 'src')
-
-    // Local utilities must be transpiled
-    // devConfig.build = {
-    //   transpile: [
-    //     'linna-util'
-    //   ]
-    // }
-
   }
 
   return aliases

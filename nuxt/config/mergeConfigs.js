@@ -1,5 +1,3 @@
-// export { mergeWithArrays as default } from 'linna-util'
-
 // NOTE: module loading in nuxt.config is broken, so we have to do this here
 // https://github.com/nuxt/framework/issues/6205
 import compact from 'lodash-es/compact'

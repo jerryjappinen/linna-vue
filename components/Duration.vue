@@ -1,7 +1,8 @@
 <script>
 import { differenceInCalendarDays } from 'date-fns'
 
-import { formatDate, normalizeDate } from 'linna-util'
+import formatDate from 'linna-util/formatDate'
+import normalizeDate from 'linna-util/normalizeDate'
 
 // NOTE: this element might print an empty <span />
 // This is intentional:

@@ -1,5 +1,7 @@
 <script setup>
-import { eventHasAnyMetaKey, linkIsInternal, nextTick } from 'linna-util'
+import eventHasAnyMetaKey from 'linna-util/eventHasAnyMetaKey'
+import linkIsInternal from 'linna-util/linkIsInternal'
+import nextTick from 'linna-util/nextTick'
 
 defineProps({
 

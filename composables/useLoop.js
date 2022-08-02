@@ -1,4 +1,4 @@
-import { frameLoop } from 'linna-util'
+import frameLoop from 'linna-util/frameLoop'
 
 import { ref } from 'vue'
 

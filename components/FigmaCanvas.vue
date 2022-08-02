@@ -1,7 +1,7 @@
 <script setup>
 import { computed } from 'vue'
 
-import { isAbsoluteUrl } from 'linna-util'
+import isAbsoluteUrl from 'linna-util/isAbsoluteUrl'
 
 const props = defineProps({
   file: {

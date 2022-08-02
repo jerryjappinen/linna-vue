@@ -1,7 +1,7 @@
 <script setup>
 import { computed } from 'vue'
 
-import { replaceAll } from 'linna-util'
+import replaceAll from 'linna-util/replaceAll'
 
 const props = defineProps({
 

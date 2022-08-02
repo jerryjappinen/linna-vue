@@ -1,5 +1,5 @@
 <script setup>
-import { toPlainText } from 'linna-util'
+import toPlainText from 'linna-util/toPlainText'
 
 defineProps({
 
