@@ -59,7 +59,7 @@ export default (persistData, persistKeyInput, loadManually) => {
   // Storage
 
   const storePersistData = debounce(function () {
-    console.log('storePersistData', persistKey)
+    // console.log('storePersistData', persistKey)
 
     // NOTE: undefined will not be stored
     // If you want to override older values explicitly, you must use null
@@ -88,13 +88,13 @@ export default (persistData, persistKeyInput, loadManually) => {
   }
 
   const clearPersistData = () => {
-    console.log('clearPersistData', persistKey)
+    // console.log('clearPersistData', persistKey.value)
 
     return clearByKey(persistKey.value)
   }
 
   const loadPersistData = () => {
-    console.log('loadPersistData', persistKey)
+    // console.log('loadPersistData', persistKey)
 
     if (windowExists()) {
       if (persistKey && persistData) {
@@ -172,6 +172,6 @@ export default (persistData, persistKeyInput, loadManually) => {
     data: persistData,
     isLoaded: persistLoaded,
     key: persistKey,
-    clearPersistData
+    clearData: clearPersistData
   }
 }
