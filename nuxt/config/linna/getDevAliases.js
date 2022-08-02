@@ -35,9 +35,10 @@ export default (pathsInput) => {
   }
 
   // linna-util's source is nested
-  if (aliases['linna-util']) {
-    aliases['linna-util'] = joinPaths(aliases['linna-util'], 'src')
-  }
+  // But this is not needed with the new package.json (?)
+  // if (aliases['linna-util']) {
+  //   aliases['linna-util'] = joinPaths(aliases['linna-util'], 'src')
+  // }
 
   return aliases
 }
