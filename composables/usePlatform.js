@@ -1,4 +1,4 @@
-import platform from 'platform-detect'
+import platform from 'platform-detect/index.mjs'
 // import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 
 export default () => {

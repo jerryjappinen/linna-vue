@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 import { isNumber, isString } from 'lodash-es'
 
-defineProps({
+const props = defineProps({
   data: {
     default: null
   }
