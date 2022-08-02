@@ -20,20 +20,20 @@ export default () => {
     viewport: useViewport()
   }
 
-  const run = (methodName) => {
+  const run = (methodName, ...args) => {
     for (const key in modules) {
       if (modules[key][methodName]) {
-        modules[key][methodName]()
+        modules[key][methodName](...args)
       }
     }
   }
 
-  const init = () => {
-    run('init')
+  const init = (...args) => {
+    run('init', ...args)
   }
 
-  const uninit = () => {
-    run('uninit')
+  const uninit = (...args) => {
+    run('uninit', ...args)
   }
 
   return {
