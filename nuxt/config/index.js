@@ -7,6 +7,7 @@ export { default as linna } from './linna'
 
 export { default as assets } from './assets'
 export { default as compression } from './compression'
+export { default as googleFonts } from './googleFonts'
 export { default as markdown } from './markdown'
 export { default as meta } from './meta'
 export { default as noComponentDirectoryPrefixes } from './noComponentDirectoryPrefixes'
