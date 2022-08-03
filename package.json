@@ -42,7 +42,7 @@
     "@nuxtjs/sitemap": "^2.4.0",
     "@pinia/nuxt": "^0.3.1",
     "platform-detect": "^3.0.1",
-    "sass": "^1.54.0",
+    "sass": "^1.54.1",
     "sass-loader": "^13.0.2",
     "vite-plugin-markdown": "^2.0.2",
     "vite-svg-loader": "^3.4.0",
@@ -50,8 +50,8 @@
   },
   "peerDependencies": {
     "date-fns": "^2.29.1",
-    "linna-sass": "^1.0.11",
-    "linna-util": "^7.0.3",
+    "linna-sass": "^1.1.2",
+    "linna-util": "^7.0.7",
     "lodash-es": "^4.17.21",
     "markdown-it": "^13.0.1",
     "nuxt": "^3.0.0-rc.6",
@@ -70,5 +70,8 @@
     "vue": {
       "optional": true
     }
+  },
+  "devDependencies": {
+    "pinia": "^2.0.17"
   }
 }
