@@ -19,6 +19,7 @@ import scripts from '../../nuxt/config/scripts'
 import scss from '../../nuxt/config/scss'
 import sitemap from '../../nuxt/config/sitemap'
 import svg from '../../nuxt/config/svg'
+import transpile from '../../nuxt/config/transpile'
 import viewport from '../../nuxt/config/viewport'
 
 const conditions = {
@@ -39,6 +40,7 @@ const helpers = {
   scss,
   sitemap,
   svg,
+  transpile,
   viewport
 }
 
