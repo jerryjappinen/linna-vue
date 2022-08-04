@@ -47,7 +47,7 @@
   },
   "peerDependencies": {
     "date-fns": "^2.29.1",
-    "linna-icons": "^0.1.10",
+    "linna-icons": "^0.1.13",
     "linna-sass": "^1.1.2",
     "linna-util": "^7.0.13",
     "lodash-es": "^4.17.21",
