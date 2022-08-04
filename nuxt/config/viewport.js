@@ -1,9 +1,11 @@
 // Behavioral base meta tags
-export default ({
-  width,
-  initialScale,
-  themeColor
-}) => {
+export default (optionsInput) => {
+  const {
+    width,
+    initialScale,
+    themeColor
+  } = optionsInput || {}
+
   const metaTags = [
     { charset: 'utf-8' },
 

@@ -3,11 +3,12 @@ import flatten from 'lodash-es/flatten'
 
 // SCSS preprocessing setup
 // e.g. scss({ global: 'styles/index.scss', shared: 'styles/mixins.scss', external: 'https://...css' })
-export default ({
-  global,
-  shared,
-  external
-}) => {
+export default (optionsInput) => {
+  const {
+    global,
+    shared,
+    external
+  } = optionsInput || {}
 
   // This goes into Nuxt, which needs list of file paths
   let globalFiles = []

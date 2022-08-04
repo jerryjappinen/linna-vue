@@ -1,15 +1,17 @@
-export default ({
-  longSiteTitle,
-  baseUrl,
+export default (optionsInput) => {
+  const {
+    longSiteTitle,
+    baseUrl,
 
-  coverImage,
-  favicon,
-  faviconIco,
-  appleTouchIcon,
-  maskIcon,
-  maskIconColor,
-  manifest
-}) => {
+    coverImage,
+    favicon,
+    faviconIco,
+    appleTouchIcon,
+    maskIcon,
+    maskIconColor,
+    manifest
+  } = (optionsInput || {})
+
   const linkTags = []
   const metaTags = []
 

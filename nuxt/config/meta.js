@@ -1,13 +1,15 @@
 // Site titles and descriptions
 // https://v3.nuxtjs.org/docs/directory-structure/nuxt.config#meta
-export default ({
-  siteAuthor,
-  siteTitle,
-  longSiteTitle,
-  siteDescription,
-  facebookAppId,
-  twitterUsername
-}) => {
+export default (optionsInput) => {
+  const {
+    siteAuthor,
+    siteTitle,
+    longSiteTitle,
+    siteDescription,
+    facebookAppId,
+    twitterUsername
+  } = optionsInput || {}
+
   const title = longSiteTitle || siteTitle || siteDescription || siteAuthor
   const metaTags = []
 

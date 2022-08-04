@@ -23,11 +23,8 @@
     "lint": "npm run lint:js",
     "lint:js": "eslint --ext .js components config directives log mixins services social spec vendor",
     "lint:js:fix": "npm run lint:js -- --fix",
-    "test": "npm run test:silent",
-    "test:default": "jest --config jest.config.js",
-    "test:silent": "npm run test:default -- --silent",
-    "test:watch": "npm run test:default -- --watch --silent",
-    "test:watch:verbose": "npm run test:default -- --watch"
+    "dev": "vitest",
+    "test": "vitest run"
   },
   "author": {
     "name": "Jerry Jäppinen",
@@ -72,6 +69,7 @@
     }
   },
   "devDependencies": {
-    "pinia": "^2.0.17"
+    "pinia": "^2.0.17",
+    "vitest": "^0.20.3"
   }
 }

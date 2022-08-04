@@ -12,12 +12,22 @@ import flatten from 'lodash-es/flatten'
 //   priority: 1,
 //   lastmod: '2017-06-30T13:30:00.000Z'
 // }
-export default ({
-  baseUrl,
-  exclude,
-  routes
-}) => {
+export default (optionsInput) => {
+  const {
+    baseUrl,
+    exclude,
+    routes
+  } = optionsInput || {}
+
+  const app = {}
+
+  if (baseUrl) {
+    app.baseURL = baseUrl
+  }
+
   return {
+    app,
+
     modules: [
       ['@nuxtjs/sitemap', {
         hostname: baseUrl,
