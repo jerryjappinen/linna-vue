@@ -1,51 +1,38 @@
 <script setup>
-// Poor man's app lifecycle handling
 import isClient from 'linna-util/isClient'
 
 import { onMounted } from 'vue'
 
-// NOTE: this should be available runtime
+// NOTE: thse should be available runtime
 // import { NuxtLayout, NuxtPage } from 'nuxt'
 
-const props = defineProps({
+const emit = defineEmits([
+  'init',
+  'init:server',
+  'init:client',
+  'mounted'
+])
 
-  onInit: {
-    type: Function,
-    default: null
-  },
+emit('init')
 
-  onClientInit: {
-    type: Function,
-    default: null
-  },
-
-  onServerInit: {
-    type: Function,
-    default: null
-  }
-
-})
-
-if (props.onInit) {
-  props.onInit()
+if (isClient()) {
+  emit('init:client')
 }
 
-if (props.onServerInit && !isClient()) {
-  props.onServerInit()
+if (!isClient()) {
+  emit('init:server')
 }
 
 // Only called in client
 onMounted(() => {
-  if (props.onClientInit) {
-    props.onClientInit()
-  }
+  emit('mounted')
 })
 </script>
 
 <template>
   <div>
     <NuxtLayout>
-      <NuxtPage/>
+      <NuxtPage />
     </NuxtLayout>
   </div>
 </template>
